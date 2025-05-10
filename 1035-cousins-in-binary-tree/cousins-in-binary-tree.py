@@ -34,8 +34,6 @@ class Solution:
         par = None
         h = 0
         f(root, y, 0)
-        print(par1)
-        print(par)
         if par is None or par1 is None:
             return False
         return h == h1 and par1 != par
