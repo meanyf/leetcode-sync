@@ -23,9 +23,11 @@ class Solution:
             if node.left and node.left.val == val:
                 par = node
                 h = depth
+                return
             if node.right and node.right.val == val:
                 par = node
                 h = depth
+                return
             f(node.left, val, depth + 1)
             f(node.right, val, depth + 1)
         f(root, x, 0)
