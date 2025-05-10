@@ -13,32 +13,23 @@
 #         self.right = right
 class Solution:
     def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
-        h = 0
-        par = None
         def f(node, val, depth):
-            nonlocal h
-            nonlocal par
             if not node:
-                return 
+                return None
             if node.left and node.left.val == val:
-                par = node
-                h = depth
-                return
+                return (depth, node)
             if node.right and node.right.val == val:
-                par = node
-                h = depth
-                return
-            f(node.left, val, depth + 1)
-            f(node.right, val, depth + 1)
-        f(root, x, 0)
-        h1 = h
-        par1 = par
-        par = None
-        h = 0
-        f(root, y, 0)
-        if par is None or par1 is None:
+                return (depth, node)
+            return f(node.left, val, depth + 1) or f(node.right, val, depth + 1)
+        ans1 = f(root, x, 0) 
+        ans2 = f(root, y, 0)
+        if ans1 is None or ans2 is None:
             return False
-        return h == h1 and par1 != par
-        
+        h1, p1 = ans1
+        h2, p2 = ans2    
+        print(h1, p1)
+        print(h2, p2)
+
+        return h1 == h2 and p1 != p2
 # @lc code=end
 
