@@ -4,8 +4,7 @@ class Solution:
         t = 0
         while tickets:
             if tickets[k] == 1 and k == 0:
-                t += 1
-                break
+                return t + 1
             tickets[0] -= 1
             if tickets[0] > 0:
                 tickets.append(tickets[0])
