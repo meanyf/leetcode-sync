@@ -10,25 +10,19 @@ class Solution:
         cur = head
         
         slow = fast = head
-        cnt = 0
-        while fast and fast.next:
-            slow = slow.next
-            cnt += 1
-            fast = fast.next.next
-        
-        if fast:
-            slow = slow.next
-
         cur = head
         prev = None
         next_ = None
-        
-        for _ in range(cnt):
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
             next_ = cur.next
             cur.next = prev
             prev = cur
             cur = next_
-
+        
+        if fast:
+            slow = slow.next
 
         while prev and slow:
             if prev.val != slow.val:
