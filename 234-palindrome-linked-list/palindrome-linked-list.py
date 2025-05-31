@@ -8,10 +8,7 @@ class Solution:
         if not head:
             return True
         cur = head
-        ans = 0
-        while cur:
-            cur = cur.next
-            ans += 1
+
         
         slow = fast = head
         cnt = 0
@@ -20,12 +17,13 @@ class Solution:
             cnt += 1
             fast = fast.next.next
         
+        if fast:
+            slow = slow.next
+
         cur = head
         prev = None
         next_ = None
-        if ans % 2 == 1:
-            slow = slow.next
-        cnt = ans//2
+        
         while cnt and cur:
             next_ = cur.next
             cur.next = prev
