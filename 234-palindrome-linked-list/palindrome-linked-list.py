@@ -8,7 +8,6 @@ class Solution:
         if not head:
             return True
         cur = head
-
         
         slow = fast = head
         cnt = 0
@@ -24,12 +23,12 @@ class Solution:
         prev = None
         next_ = None
         
-        while cnt and cur:
+        for _ in range(cnt):
             next_ = cur.next
             cur.next = prev
             prev = cur
             cur = next_
-            cnt -= 1
+
 
         while prev and slow:
             if prev.val != slow.val:
