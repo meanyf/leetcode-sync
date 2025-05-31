@@ -7,12 +7,8 @@ class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         if not head:
             return True
-        cur = head
-        
-        slow = fast = head
-        cur = head
+        cur = slow = fast = head
         prev = None
-        next_ = None
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
