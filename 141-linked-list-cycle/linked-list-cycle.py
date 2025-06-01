@@ -9,7 +9,7 @@ class Solution:
         d = {}
         cur = head
         while cur:
-            if cur in d or cur.next in d:
+            if cur in d:
                 return True
             d[cur] = True
             cur = cur.next
