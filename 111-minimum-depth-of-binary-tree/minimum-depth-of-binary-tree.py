@@ -15,7 +15,7 @@ class Solution:
             for _ in range(len(queue)):
                 node = queue.popleft()
                 if not node.left and not node.right:
-                    mn = min(mn, depth)
+                    return depth
                 if node.left:
                     queue.append(node.left)
                 if node.right:
