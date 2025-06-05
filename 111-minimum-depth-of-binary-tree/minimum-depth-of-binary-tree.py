@@ -12,16 +12,14 @@ class Solution:
         mn = float('inf')
         depth = 1
         while queue:
-            level = []
             for _ in range(len(queue)):
                 node = queue.popleft()
                 if not node.left and not node.right:
                     mn = min(mn, depth)
                 if node.left:
-                    level.append(node.left)
+                    queue.append(node.left)
                 if node.right:
-                    level.append(node.right)
-            queue.extend(level)
+                    queue.append(node.right)
             depth += 1
         return mn
         # if not root:
