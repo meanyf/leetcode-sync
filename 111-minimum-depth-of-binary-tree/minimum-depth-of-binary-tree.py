@@ -9,7 +9,6 @@ class Solution:
         if not root:
             return 0
         queue = deque([root])
-        mn = float('inf')
         depth = 1
         while queue:
             for _ in range(len(queue)):
@@ -21,7 +20,6 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
             depth += 1
-        return mn
         # if not root:
         #     return 0
         # mn = float('inf')
