@@ -8,7 +8,7 @@ class Solution:
     def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
         def get_children(node):
             return [child for child in (node.left, node.right) if child]
-        res = []
+        res = deque()
         def bfs():
             if not root:
                 return None
@@ -19,7 +19,6 @@ class Solution:
                     node = queue.popleft()
                     level.append(node.val)
                     queue.extend(get_children(node))
-                res.append(level)
+                res.appendleft(level)
         bfs()
-        res.reverse()
-        return res
+        return list(res)
