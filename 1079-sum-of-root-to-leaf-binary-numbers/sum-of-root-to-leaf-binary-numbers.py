@@ -8,15 +8,15 @@ class Solution:
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-        stack = [(root, '')]
+        stack = [(root, 0)]
         res = 0
         while stack:
             node, path = stack.pop()
             if node:
                 if not node.left and not node.right:
-                    res += int(path + str(node.val), 2)
-                stack.append((node.right, path + str(node.val)))
-                stack.append((node.left, path + str(node.val)))
+                    res += path << 1 | node.val
+                stack.append((node.right, path << 1 | node.val))
+                stack.append((node.left, path << 1 | node.val))
         return res
         # a = 0
         # def dfs(node, num = ''):
