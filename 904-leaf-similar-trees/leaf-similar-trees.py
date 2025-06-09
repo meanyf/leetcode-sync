@@ -6,19 +6,15 @@
 #         self.right = right
 class Solution:
     def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
-        if not root1 and not root2:
-            return True
-        stack = [(root1, root2)]
-        res1 = []
-        res2 = []
-        while stack:
-            node1, node2 = stack.pop()
-            if node1 and not node1.left and not node1.right:
-                res1.append(node1.val)
-            if node2 and not node2.left and not node2.right:
-                res2.append(node2.val)
-            if node1 or node2:
-                stack.append((node1.right if node1 else None, node2.right if node2 else None))
-                stack.append((node1.left if node1 else None, node2.left if node2 else None))
-        
-        return res1 == res2
+        def get_nodes(root):
+            res = []
+            stack = [root]
+            while stack:
+                node = stack.pop()
+                if node:
+                    if not node.left and not node.right:
+                        res.append(node.val)
+                    stack.append(node.right)
+                    stack.append(node.left)
+            return res
+        return get_nodes(root1) == get_nodes(root2)
