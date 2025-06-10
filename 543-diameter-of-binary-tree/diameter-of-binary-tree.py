@@ -26,5 +26,4 @@ class Solution:
                     stack.append((node.right, False))
                 if node.left:
                     stack.append((node.left, False))
-        print(values.values())
         return res
