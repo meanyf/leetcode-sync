@@ -44,7 +44,6 @@ class Solution:
                 if node.left:
                 # if node.left:
                     stack.append((node.left, False, depth + 1))
-        print(d)
         return True
         # x = True
         # def dfs(node):
