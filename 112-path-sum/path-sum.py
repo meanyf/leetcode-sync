@@ -22,19 +22,20 @@ class Solution:
             if current:
                 if prev_val is not None:
                     stack.append((current, current.val + prev_val))
-                    prev_val = None
-                elif len(stack) > 0:
-                    stack.append((current, current.val + stack[-1][1]))
                 else:
                     stack.append((current, current.val))
+                prev_val = stack[-1][1]
                 current = current.left
             else:
+                if stack:
+                    prev_val = stack[-1][1]
                 node, val = stack.pop()
-                prev_val = val
                 if not node.right and not node.left:
                     if val == targetSum:
                         return True
                 current = node.right
+            
+            
         return False
 
         # if not root:
