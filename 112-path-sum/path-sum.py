@@ -31,11 +31,8 @@ class Solution:
             else:
                 node, val = stack.pop()
                 prev_val = val
-                if node.val == 2:
-                    print(val)
                 if not node.right and not node.left:
                     if val == targetSum:
-                        print(node)
                         return True
                 current = node.right
         return False
