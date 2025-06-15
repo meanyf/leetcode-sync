@@ -21,7 +21,7 @@ class Solution:
         stack = [root]
         node_sub = None
         node = None
-        res = []
+        res = deque()
         while stack:
             node = stack.pop()
             res.append(node)
@@ -40,7 +40,7 @@ class Solution:
             else:
                 if res:
                     stack = [res[0]]
-                    del res[0]
+                    res.popleft()
             if node_sub and not node:
                 stack_sub = [subRoot]
             if node:
@@ -58,7 +58,7 @@ class Solution:
                     stack_sub = [subRoot]
                     if res:
                         stack = [res[0]]
-                        del res[0]
+                        res.popleft()
                     continue
                 stack.append(node.right)
                 stack.append(node.left)
