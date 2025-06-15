@@ -17,8 +17,5 @@ class Solution:
                 hi = mi - 1
             else:
                 lo = mi + 1
-        if hi > lo:
-            return lo - 1
-        else:
-            return hi + 1
+        return hi + 1
 # @lc code=end
