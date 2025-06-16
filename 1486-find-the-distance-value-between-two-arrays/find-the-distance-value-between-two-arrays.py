@@ -17,7 +17,6 @@ class Solution:
                 mi = (lo + hi) // 2
                 if arr2[mi] == item:
                     if abs(item - arr2[mi] > d):
-                        print('exac')
                         cnt += 1
                     break
                 if arr2[mi] < item:
@@ -25,13 +24,18 @@ class Solution:
                 else:
                     hi = mi - 1
             else:
-                ok = True
-                if lo < len(arr2) and abs(arr2[lo] - item) <= d:
-                    ok = False
-                if lo > 0 and abs(arr2[lo - 1] - item) <= d:
-                    ok = False
-                if ok:
-                    cnt += 1
+                if lo == 0:
+                    if abs(arr2[lo] - item) > d:
+                        cnt += 1
+                elif lo == len(arr2):
+                    if abs(arr2[lo - 1] - item) > d:
+                        cnt += 1
+                elif lo == len(arr2) - 1:
+                    if abs(arr2[lo] - item) > d and abs(arr2[lo - 1] - item) > d:
+                        cnt += 1      
+                elif 0 < lo < len(arr2) - 1:
+                    if abs(arr2[lo] - item) > d and abs(arr2[lo - 1] - item) > d and abs(arr2[lo + 1] - item) > d:
+                        cnt += 1
 
         return cnt
         
