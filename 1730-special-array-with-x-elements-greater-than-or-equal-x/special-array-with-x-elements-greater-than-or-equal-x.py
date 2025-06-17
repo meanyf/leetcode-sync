@@ -10,7 +10,7 @@ class Solution:
         nums.sort()
         for i in range(nums[len(nums) - 1] + 1):
             lo = 0
-            hi = len(nums)
+            hi = len(nums) - 1
             while lo <= hi:
                 mi = (lo + hi) // 2
                 if nums[mi] < i:
