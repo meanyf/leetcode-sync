@@ -7,10 +7,15 @@
 # @lc code=start
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        nums.sort()
-        for i, num in enumerate(nums):
-            if i != num:
+        s = set(nums)
+        for i in range(len(nums) + 1):
+            if i not in s:
                 return i
-        return len(nums)
+
+        # nums.sort()
+        # nums.append(len(nums))
+        # for i, num in enumerate(nums):
+        #     if i != num:
+        #         return i
 # @lc code=end
 
