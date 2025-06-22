@@ -10,7 +10,6 @@ class Solution:
         lo = 0
         hi = len(nums) - 1
         while lo <= hi:
-            print(lo, hi)
             mi = (lo + hi) // 2
             left = nums[mi - 1] if mi > 0 else float('-inf')
             right = nums[mi + 1] if mi < len(nums) - 1 else float('inf')
@@ -18,7 +17,7 @@ class Solution:
                 return nums[mi]
             if mi % 2 == 0:
                 if left == nums[mi]:
-                    hi = mi - 2
+                    hi = mi - 2  # -2
                 else:
                     lo = mi + 1
             else:
@@ -26,6 +25,5 @@ class Solution:
                     lo = mi + 1
                 else:
                     hi = mi - 1
-        return nums[0]
 # @lc code=end
 
