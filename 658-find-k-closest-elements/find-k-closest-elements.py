@@ -1,3 +1,10 @@
+#
+# @lc app=leetcode id=658 lang=python3
+#
+# [658] Find K Closest Elements
+#
+
+# @lc code=start
 from collections import deque
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
@@ -11,9 +18,9 @@ class Solution:
                 hi = mi
         if lo == len(arr) or (lo == 0 and arr[lo] == x):
             if lo == 0:
-                return sorted(arr[:k])
+                return arr[:k]
             if lo == len(arr):
-                return sorted(arr[-k:])
+                return arr[-k:]
         l = lo
         if arr[lo] != x and abs(x - arr[lo - 1]) <= abs(x - arr[lo]):
             l -= 1
@@ -31,3 +38,5 @@ class Solution:
                 r += 1
             cnt += 1
         return list(res)
+# @lc code=end
+
