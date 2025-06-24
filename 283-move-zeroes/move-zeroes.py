@@ -17,7 +17,7 @@ class Solution:
                 r = max(r, l + 1)
                 while r < len(nums) and nums[r] == 0:
                     r += 1
-                if r < len(nums) and nums[r] != 0:
+                if r < len(nums):
                     nums[l], nums[r] = nums[r], nums[l]
             else:
                 l += 1
