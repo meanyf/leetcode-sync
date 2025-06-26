@@ -13,7 +13,6 @@ class Solution:
         cnt = 1
         insert = 0
         for i in range(1, len(chars)):
-            ans = chars[i]
             if chars[i] == prev:
                 cnt += 1
             else:
@@ -21,19 +20,18 @@ class Solution:
                 insert += 1
                 if cnt > 1:
                     cnt_list = list(str(cnt))
-                    for i in range(len(cnt_list)):
-                        chars[i + insert] = cnt_list[i]
-                    insert += len(cnt_list)
+                    for ch in cnt_list:
+                        chars[insert] = ch
+                        insert += 1
                 cnt = 1
-            prev = ans
+            prev = chars[i]
         chars[insert] = prev
         insert += 1
         if cnt > 1:
             cnt_list = list(str(cnt))
-            for i in range(len(cnt_list)):
-                chars[i + insert] = cnt_list[i]
-            insert += len(cnt_list)
-        
+            for ch in cnt_list:
+                chars[insert] = ch
+                insert += 1
         return insert
 # @lc code=end
 
