@@ -12,11 +12,10 @@ class Solution:
         prev = nums[0]
         insert = 1
         for i in range(1, len(nums)):
-            ans = nums[i]
             if prev != nums[i]:
                 nums[insert] = nums[i]
                 insert += 1
-            prev = ans
+            prev = nums[i]
         return insert
 # @lc code=end
 
