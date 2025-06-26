@@ -13,7 +13,6 @@ class Solution:
             if nums[i] == val:
                 nums[i], nums[swap] = nums[swap], nums[i]
                 swap -= 1
-                cnt += 1
-        return len(nums) - cnt
+        return swap + 1
 # @lc code=end
 
