@@ -18,7 +18,6 @@ class Solution:
             if mx == i:
                 res.append(d[ch] + 1 - prev)
                 prev += res[-1]
-                mx = 0
         return res
 # @lc code=end
 
