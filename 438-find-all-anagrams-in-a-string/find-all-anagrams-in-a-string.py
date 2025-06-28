@@ -15,30 +15,20 @@ class Solution:
         for item in p:
             d[item] += 1
         l = r = 0
-        d2 = defaultdict(int)
-        target = 0
-        while l < len(s) and r < len(s):
-            d2[s[r]] += 1
-            target += 1
-            if s[r] in d and d2[s[r]] <= d[s[r]]:
-                if target == len(p):
+        window = defaultdict(int)
+        while r < len(s):
+            window[s[r]] += 1
+            if s[r] in d and window[s[r]] <= d[s[r]]:
+                if r - l + 1 == len(p):
                     res.append(l)
-                    if d2[s[l]] > 0:
-                        d2[s[l]] -= 1
+                    if window[s[l]] > 0:
+                        window[s[l]] -= 1
                     l += 1
-                    target -= 1
             else:
-                if s[r] not in d:
-                    l = r + 1
-                    d2.clear()
-                    target = 0
-                else:
-                    el = s[r]
-                    while d2[el] != d[el]:
-                        if d2[s[l]] > 0:
-                            d2[s[l]] -= 1
-                            target -= 1
-                        l += 1
+                while window[s[r]] > d[s[r]]:
+                    if window[s[l]] > 0:
+                        window[s[l]] -= 1
+                    l += 1
             r += 1
         return res
 # @lc code=end
