@@ -25,13 +25,9 @@ class Solution:
                     if d2[s[l]] > 0:
                         d2[s[l]] -= 1
                     l += 1
-                    r += 1
-                else:
-                    r += 1
             else:
                 if s[r] not in d:
-                    r += 1
-                    l = r
+                    l = r + 1
                     d2.clear()
                 else:
                     el = s[r]
@@ -39,7 +35,7 @@ class Solution:
                         if d2[s[l]] > 0:
                             d2[s[l]] -= 1
                         l += 1
-                    r += 1
+            r += 1
         return res
         
 
