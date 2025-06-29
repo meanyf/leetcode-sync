@@ -11,13 +11,9 @@ class Solution:
         d = {}
         l = 0
         mx = 0
-        last = 0
         for r, ch in enumerate(s):
-            
             if ch in d:
-                last = max(d[ch] + 1, last)
-                l = last
-                
+                l = max(d[ch] + 1, l)
 
             d[ch] = r
             
