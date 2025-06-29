@@ -12,7 +12,7 @@ class Solution:
         d[0] = 1
         prefix = 0
         res = 0
-        for i, num in enumerate(nums):
+        for num in nums:
             prefix += num
             if prefix - k in d:
                 res += d[prefix - k]
