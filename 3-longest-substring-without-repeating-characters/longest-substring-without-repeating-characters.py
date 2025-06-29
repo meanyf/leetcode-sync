@@ -8,15 +8,18 @@
 from collections import defaultdict
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        d = defaultdict(int)
+        d = {}
         l = 0
         mx = 0
+        last = 0
         for r, ch in enumerate(s):
-            d[ch] += 1
+            
+            if ch in d:
+                last = max(d[ch] + 1, last)
+                l = last
+                
 
-            while d[ch] > 1:
-                d[s[l]] -= 1
-                l += 1
+            d[ch] = r
             
             mx = max(mx, r - l + 1)
         return mx
