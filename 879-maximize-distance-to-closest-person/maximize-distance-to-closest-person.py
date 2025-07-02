@@ -14,9 +14,10 @@ class Solution:
                 r += 1
             if r == len(seats):
                 mx = max(mx, r - l - 1)
-            if l == 0 and seats[0] == 0:
+            elif l == 0 and seats[0] == 0:
                 mx = max(mx, r - l)
-            mx = max(mx, (r - l) // 2)
+            else:
+                mx = max(mx, (r - l) // 2)
             l = r
             r += 1
         return mx
