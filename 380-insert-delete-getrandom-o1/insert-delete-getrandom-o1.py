@@ -23,11 +23,12 @@ class RandomizedSet:
     def remove(self, val: int) -> bool:
         if val not in self.d:
             return False
-        id = self.d[val]
-        self.lst[id] = self.lst[-1]
-        self.d[self.lst[-1]] = id
-        self.lst.pop()
-        del self.d[val]
+
+        id = self.d.pop(val)
+        last = self.lst.pop()
+        if id < len(self.lst):
+            self.lst[id] = last
+            self.d[last] = id
         return True
 
     def getRandom(self) -> int:
