@@ -11,33 +11,24 @@ class RandomizedSet:
 
     def __init__(self):
         self.d = dict()
-        self.id = 0
         self.lst = []
 
     def insert(self, val: int) -> bool:
-        x = None
         if val in self.d:
-            x = False
-        else:
-            self.d[val] = self.id
-            self.lst.append(val)
-            x = True
-            self.id += 1
-        return x
+            return False
+        self.d[val] = len(self.lst)
+        self.lst.append(val)
+        return True
 
     def remove(self, val: int) -> bool:
-        x = None
-        if val in self.d:
-            x = True
-            id = self.d[val]
-            self.lst[id] = self.lst[-1]
-            self.d[self.lst[-1]] = id
-            self.lst.pop()
-            del self.d[val]
-            self.id -= 1
-        else:
-            x = False
-        return x
+        if val not in self.d:
+            return False
+        id = self.d[val]
+        self.lst[id] = self.lst[-1]
+        self.d[self.lst[-1]] = id
+        self.lst.pop()
+        del self.d[val]
+        return True
 
     def getRandom(self) -> int:
         return random.choice(self.lst)
