@@ -9,14 +9,14 @@ from collections import deque
 class RecentCounter:
 
     def __init__(self):
-        self.queue = deque([])
+        self.q = deque()
 
     def ping(self, t: int) -> int:
         start = t - 3000
-        self.queue.append(t)
-        while self.queue and self.queue[0] < start:
-            self.queue.popleft()
-        return len(self.queue)
+        self.q.append(t)
+        while self.q and self.q[0] < start:
+            self.q.popleft()
+        return len(self.q)
             
 
 
