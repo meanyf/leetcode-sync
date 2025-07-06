@@ -21,13 +21,11 @@ class RecentCounter:
         while i < len(self.queue):
             item = self.queue[i]
             if item >= self.start:
-                cnt += 1
-            else:
-                k += 1
+                break
             i += 1
-        for _ in range(min(k, len(self.queue))):
+        for _ in range(min(i, len(self.queue))):
             self.queue.popleft()
-        return cnt
+        return len(self.queue)
             
 
 
