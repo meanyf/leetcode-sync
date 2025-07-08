@@ -22,7 +22,6 @@ class Solution:
                 else:
                     r += 1
                     l -= 1
-            print(l,r)
             if r == len(s) and l == -1:
                 return True
             if cnt == 0:
