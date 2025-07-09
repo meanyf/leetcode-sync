@@ -21,8 +21,8 @@ class Solution:
 			if node:
 				if not (mn < node.val < mx):
 					return False 
-				stack.append((node.right, min(mx, node.val), max(node.val, mx)))
-				stack.append((node.left, min(node.val, mn), min(mx, node.val)))
+				stack.append((node.right, node.val, mx))
+				stack.append((node.left, mn, node.val))
 		return True
 # @lc code=end
 
