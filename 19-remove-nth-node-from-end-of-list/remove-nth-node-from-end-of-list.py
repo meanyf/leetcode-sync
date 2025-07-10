@@ -22,11 +22,7 @@ class Solution:
         cur = head
         for _ in range(cnt - n - 1):
             cur = cur.next
-        fr = cur
-        cur = head
-        for _ in range(cnt - n + 1):
-            cur = cur.next
-        fr.next = cur
+        cur.next = cur.next.next
         return head
 # @lc code=end
 
