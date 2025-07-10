@@ -22,15 +22,6 @@ class Solution:
         cur = head
         if n == cnt:
             return cur.next
-        if n == 1:
-            cur = head
-            for _ in range(cnt - 2):
-                cur = cur.next
-            if cur:
-                cur.next = None
-                return head
-            else:
-                return None
         cur = head
         for _ in range(cnt - n - 1):
             cur = cur.next
