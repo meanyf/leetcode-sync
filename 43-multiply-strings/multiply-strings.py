@@ -7,40 +7,36 @@
 # @lc code=start
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
-        
-        num1 = num1[::-1]
-        num2 = num2[::-1]
+        num1 = [ord(ch) - 48 for ch in reversed(num1)]
+        num2 = [ord(ch) - 48 for ch in reversed(num2)]
         total = []
         for i, item in enumerate(num2):
-            res = ['0'] * i
+            res = [0] * i
             add = 0
             for ch in num1:
-                ans = int(ch) * int(item) + add
+                ans = ch * item + add
                 add = ans // 10
-                res.append(str(ans % 10))
+                res.append(ans % 10)
             if add:
-                res.append(str(add))
+                res.append(add)
             total.append(res)
-            # print(res)
         total.reverse()
         for i in range(len(total)):
-            total[i].extend(['0'] * i)
+            total[i].extend([0] * i)
         res = list(total[0])
         for item in total[1:]:
             add = 0
-            cnt_zeros = abs(len(res) - len(item))
-            item = ''.join(item)
-            if len(res) > len(item):
-                item = item.ljust(cnt_zeros + len(item), '0')
+            if len(item) < len(res):
+                item.extend([0] * (len(res) - len(item)))
             for i, (ch1, ch2) in enumerate(zip(item, res)):
-                print(ch1, ch2)
-                ans = int(ch1) + int(ch2) + add
+                ans = ch1 + ch2 + add
                 add = ans // 10
-                res[i] = (str(ans % 10))
-            if add == 1:
-                res.append('1')
-        if set(res) == {"0"}: return '0'
-        return ''.join(list(reversed(res)))
+                res[i] = (ans % 10)
+            if add:
+                res.append(1)
+        if set(res) == {0}: return '0'
+        return ''.join(map(str, reversed(res)))
+
 
         # res = []
         # i = 0
