@@ -7,10 +7,7 @@
 # @lc code=start
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        if not nums:
-            return []
         nums.sort()
-        idx = 0
         res = []
         for idx in range(len(nums) - 2):
             if idx > 0 and nums[idx] == nums[idx-1]:
@@ -21,8 +18,9 @@ class Solution:
                 val = nums[idx] + nums[l] + nums[r]
                 if val == 0:
                     res.append([nums[idx], nums[l], nums[r]])
+                    prev = nums[l]
                     l += 1
-                    while l < r and nums[l - 1] == nums[l]:
+                    while l < r and prev == nums[l]:
                         l += 1
                 elif val < 0:
                     l += 1
