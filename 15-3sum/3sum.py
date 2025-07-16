@@ -24,14 +24,10 @@ class Solution:
                     l += 1
                     while l < r and nums[l - 1] == nums[l]:
                         l += 1
-                if val < 0:
+                elif val < 0:
                     l += 1
-                    while l < r and nums[l - 1] == nums[l]:
-                        l += 1
                 else:
                     r -= 1
-                    while r > l and nums[r + 1] == nums[r]:
-                        r -= 1
         return res
 # @lc code=end
 
