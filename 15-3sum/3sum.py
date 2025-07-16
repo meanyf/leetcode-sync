@@ -10,6 +10,7 @@ class Solution:
         if not nums:
             return []
         nums.sort()
+        print(nums)
         idx = 0
         res = []
         while idx < len(nums) - 2:
@@ -20,15 +21,17 @@ class Solution:
                 val = nums[idx] + nums[l] + nums[r]
                 if val == 0:
                     item = [nums[idx], nums[l], nums[r]]
-                    if prev != item:
-                        res.append(item)
-                if nums[l] == nums[r]:
-                    break
-                prev = [nums[idx], nums[l], nums[r]]
+                    res.append(item)
+                prev_l = l
+                prev_r = r
                 if val < 0:
                     l += 1
+                    while l < r and nums[prev_l] == nums[l]:
+                        l += 1
                 else:
                     r -= 1
+                    while r > l and nums[prev_r] == nums[r]:
+                        r -= 1
             prev = nums[idx]
             idx += 1
             while idx < len(nums) - 2 and nums[idx] == prev:
