@@ -21,6 +21,9 @@ class Solution:
                 val = nums[idx] + nums[l] + nums[r]
                 if val == 0:
                     res.append([nums[idx], nums[l], nums[r]])
+                    l += 1
+                    while l < r and nums[l - 1] == nums[l]:
+                        l += 1
                 if val < 0:
                     l += 1
                     while l < r and nums[l - 1] == nums[l]:
