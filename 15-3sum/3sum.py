@@ -10,7 +10,6 @@ class Solution:
         if not nums:
             return []
         nums.sort()
-        print(nums)
         idx = 0
         res = []
         while idx < len(nums) - 2:
@@ -34,7 +33,6 @@ class Solution:
             idx += 1
             while idx < len(nums) - 2 and nums[idx] == prev:
                 idx += 1
-            print(idx, end=', ')
         return res
 # @lc code=end
 
