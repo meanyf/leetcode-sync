@@ -23,10 +23,15 @@ class Solution:
                     while l < r and prev == nums[l]:
                         l += 1
                 elif val < 0:
+                    prev = nums[l]
                     l += 1
+                    while l < r and prev == nums[l]:
+                        l += 1
                 else:
+                    prev = nums[r]
                     r -= 1
+                    while l < r and prev == nums[r]:
+                        r -= 1
         return res
 # @lc code=end
-
 
