@@ -7,8 +7,7 @@
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
-        print(nums)
-        res = 1231231
+        res = float('inf')
         mn = float('inf')
         for idx in range(len(nums) - 2):
             if idx > 0 and nums[idx] == nums[idx-1]:
@@ -20,6 +19,7 @@ class Solution:
                 if abs(target - val) < mn:
                     mn = abs(target - val)
                     res = val
+                    if target == val: return target
                 elif val < target:
                     prev = nums[l]
                     l += 1
