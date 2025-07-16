@@ -18,7 +18,7 @@ class Solution:
                 val = nums[idx] + nums[l] + nums[r]
                 if val == 0:
                     item = [nums[idx], nums[l], nums[r]]
-                    key = (nums[idx], nums[l], nums[r])
+                    key = tuple(item)
                     if key not in s:
                         s.add(key)
                         res.append(item)
