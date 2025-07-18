@@ -19,7 +19,6 @@ class ATM:
 
     def withdraw(self, amount: int) -> List[int]:
         self.back = defaultdict(int)
-
         res = [0] * 5
         for i in range(5):
             current_banknote = None
@@ -31,23 +30,15 @@ class ATM:
             if current_banknote <= amount and self.d[current_banknote] > 0:
                 target = min(amount // current_banknote, self.d[current_banknote])
                 self.back[current_banknote] += target
-                res[i] += target
+                res[4 - i] += target
                 amount -= current_banknote * target
                 self.d[current_banknote] -= target
-        print(amount)
         if amount == 0:
-            res.reverse()
             return res
         for key in self.back:
             self.d[key] += self.back[key]
             self.back[key] = 0 
         return [-1]
-        
-      
-
-
-
-        ...
 
 
 # Your ATM object will be instantiated and called as such:
