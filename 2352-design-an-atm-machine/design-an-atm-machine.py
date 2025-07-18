@@ -10,6 +10,7 @@ class ATM:
 
     def __init__(self):
         self.d = defaultdict(int)
+        self.values = [500, 200, 100, 50, 20]
     def deposit(self, banknotesCount: List[int]) -> None:
         self.d[20] += banknotesCount[0]
         self.d[50] += banknotesCount[1]
@@ -20,13 +21,8 @@ class ATM:
     def withdraw(self, amount: int) -> List[int]:
         self.back = defaultdict(int)
         res = [0] * 5
-        for i in range(5):
-            current_banknote = None
-            if i == 0: current_banknote = 500
-            if i == 1: current_banknote = 200
-            if i == 2: current_banknote = 100
-            if i == 3: current_banknote = 50
-            if i == 4: current_banknote = 20
+        for i in range(len(self.values)):
+            current_banknote = self.values[i]
             if current_banknote <= amount and self.d[current_banknote] > 0:
                 target = min(amount // current_banknote, self.d[current_banknote])
                 self.back[current_banknote] += target
