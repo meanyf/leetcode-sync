@@ -34,7 +34,7 @@ class ATM:
             return res
         for key in self.back:
             self.d[key] += self.back[key]
-            self.back[key] = 0 
+        self.back.clear()
         return [-1]
 
 
