@@ -10,6 +10,7 @@ class ATM:
 
     def __init__(self):
         self.d = defaultdict(int)
+        self.back = defaultdict(int)
         self.values = [500, 200, 100, 50, 20]
     def deposit(self, banknotesCount: List[int]) -> None:
         self.d[20] += banknotesCount[0]
@@ -19,7 +20,6 @@ class ATM:
         self.d[500] += banknotesCount[4]
 
     def withdraw(self, amount: int) -> List[int]:
-        self.back = defaultdict(int)
         res = [0] * 5
         for i in range(len(self.values)):
             current_banknote = self.values[i]
@@ -30,6 +30,7 @@ class ATM:
                 amount -= current_banknote * target
                 self.d[current_banknote] -= target
         if amount == 0:
+            self.back.clear()
             return res
         for key in self.back:
             self.d[key] += self.back[key]
@@ -42,4 +43,3 @@ class ATM:
 # obj.deposit(banknotesCount)
 # param_2 = obj.withdraw(amount)
 # @lc code=end
-
