@@ -9,21 +9,20 @@ class MyQueue:
 
     def __init__(self):
         self.stack1 = []
-        self.i = 0
+        self.stack2 = []
 
     def push(self, x: int) -> None:
         self.stack1.append(x)
+        self.stack2.insert(0, x) 
 
     def pop(self) -> int:
-        item = self.stack1[self.i]
-        self.i += 1
-        return item
+        return self.stack2.pop()
 
     def peek(self) -> int:
-        return self.stack1[self.i]
+        return self.stack2[-1]
 
     def empty(self) -> bool:
-        if self.i >= len(self.stack1):
+        if not self.stack2:
             return True
         else:
             return False
