@@ -14,10 +14,10 @@ class Solution:
             level = []
             for _ in range(len(queue)):
                 node = queue.popleft()
-                level.append(node.val)
-                if node.left:
+                if node:
+                    level.append(node.val)
                     queue.append(node.left)
-                if node.right:
                     queue.append(node.right)
-            res.append(level)
+            if level:
+                res.append(level)
         return res
