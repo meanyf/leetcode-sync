@@ -4,14 +4,20 @@
 # [42] Trapping Rain Water
 #
 
+
 # @lc code=start
 class Solution:
     def trap(self, height: List[int]) -> int:
         res = 0
-        def f():
+        def f(height):
             res = 0
+            idx = 0
+            mx = 0
             l = 0
             while l < len(height):
+                if height[l] >= mx:
+                    idx = l
+                    mx = height[l]
                 left = height[l]
                 ans = 0
                 if left:
@@ -27,18 +33,15 @@ class Solution:
                     l = r
                 else:
                     l += 1
-            return res
-        res += f()
-        max_value = max(height)
-        idx = max(i for i, x in enumerate(height) if x == max_value)
-        print(idx) # 0
-        # 1 3 4 2
-        idx = len(height) - idx
-        # 2 4 3 1
-        height.reverse()
-        height = height[:idx + 1]
-        print(height)
-        res += f()
+            return res, len(height) - idx
+
+        ans, idx = f(height)
+        res += ans
+        new_height = height[::-1]
+        new_height = new_height[:idx + 1]
+        res += f(new_height)[0]
 
         return res
+
+
 # @lc code=end
