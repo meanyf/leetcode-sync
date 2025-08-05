@@ -11,29 +11,49 @@
 #         self.val = val
 #         self.next = next
 import heapq
+
+
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        ans = []
         res = dummy = ListNode()
-        i = 0
-        while i < len(lists):
-            for j in range(len(lists)):
-                # print(ans)
-                if not lists[j]: 
-                    lists[j] = -1
-                    i += 1
-                    continue
-                if lists[j] == -1:
-                    continue
-                heapq.heappush(ans, lists[j].val)
-                lists[j] = lists[j].next
-            if len(ans) == len(lists):
-                dummy.next = ListNode(heapq.heappop(ans))
+        heap = []
+        for i, item in enumerate(lists):
+            if item:
+                heapq.heappush(heap, (item.val, i, item))
+        
+        j = len(lists) + 1
+        while heap:
+            val, i, list = heapq.heappop(heap)
+            if list:
+                if list.next:
+                    heapq.heappush(heap, (list.next.val, j, list.next))
+                dummy.next = list
                 dummy = dummy.next
-        while ans:
-            dummy.next = ListNode(heapq.heappop(ans))
-            dummy = dummy.next
+            j += 1
         return res.next
+        
+
+
+        # ans = []
+        # res = dummy = ListNode()
+        # i = 0
+        # while i < len(lists):
+        #     for j in range(len(lists)):
+        #         if not lists[j]:
+        #             lists[j] = -1
+        #             i += 1
+        #             continue
+        #         if lists[j] == -1:
+        #             continue
+        #         heapq.heappush(ans, lists[j].val)
+        #         lists[j] = lists[j].next
+        #     if len(ans) >= len(lists):
+        #         dummy.next = ListNode(heapq.heappop(ans))
+        #         dummy = dummy.next
+        # while ans:
+        #     dummy.next = ListNode(heapq.heappop(ans))
+        #     dummy = dummy.next
+        # return res.next
 
         # ans = []
         # for item in lists:
@@ -46,4 +66,7 @@ class Solution:
         #     tail.next = ListNode(item)
         #     tail = tail.next
         # return res_tail.next
+
+
 # @lc code=end
+
