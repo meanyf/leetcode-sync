@@ -21,15 +21,12 @@ class Solution:
             if item:
                 heapq.heappush(heap, (item.val, i, item))
         
-        j = len(lists) + 1
         while heap:
             val, i, list = heapq.heappop(heap)
-            if list:
-                if list.next:
-                    heapq.heappush(heap, (list.next.val, j, list.next))
-                dummy.next = list
-                dummy = dummy.next
-            j += 1
+            if list.next:
+                heapq.heappush(heap, (list.next.val, i, list.next))
+            dummy.next = list
+            dummy = dummy.next
         return res.next
         
 
