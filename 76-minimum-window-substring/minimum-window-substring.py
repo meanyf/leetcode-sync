@@ -14,11 +14,10 @@ class Solution:
             d[item] = d.get(item, 0) + 1
         window = {}
         res = float("inf")
+        ans_l = ans_r = 0
         l = 0
         formed = 0
         for r, ch in enumerate(s):
-            if l > r:
-                break
             if ch in d:
                 window[ch] = window.get(ch, 0) + 1
                 if window[ch] == d[ch]:
@@ -34,9 +33,8 @@ class Solution:
                 if s[l] in window:
                     window[s[l]] -= 1
                 l += 1
-                # print(s[l : r + 1])
 
-        return '' if res == float('inf') else s[ans_l: ans_r + 1]
+        return "" if res == float("inf") else s[ans_l : ans_r + 1]
 
 
 # @lc code=end
