@@ -12,7 +12,6 @@ class Solution:
         d = {}
         for item in t:
             d[item] = d.get(item, 0) + 1
-        ans = ""
         window = {}
         res = float("inf")
         l = 0
@@ -28,7 +27,8 @@ class Solution:
             while l < len(s) and formed == len(d):
                 if r - l + 1 < res:
                     res = r - l + 1
-                    ans = s[l : r + 1]
+                    ans_l = l
+                    ans_r = r
                 if window.get(s[l], 0) == d.get(s[l], 0) and window.get(s[l], 0) != 0:
                     formed -= 1
                 if s[l] in window:
@@ -36,7 +36,7 @@ class Solution:
                 l += 1
                 # print(s[l : r + 1])
 
-        return ans
+        return '' if res == float('inf') else s[ans_l: ans_r + 1]
 
 
 # @lc code=end
