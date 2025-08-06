@@ -16,8 +16,7 @@ class Solution:
         ans = (float("inf"), 0, 0)
         l = 0
         formed = 0
-        filtered = [(i, ch) for i, ch in enumerate(s) if ch in d]
-        for r, ch in filtered:
+        for r, ch in enumerate(s):
             if ch in d:
                 window[ch] += 1
                 if window[ch] == d[ch]:
