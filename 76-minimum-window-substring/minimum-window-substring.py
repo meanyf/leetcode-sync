@@ -6,26 +6,26 @@
 
 # @lc code=start
 
-
+from collections import defaultdict
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         d = {}
         for item in t:
             d[item] = d.get(item, 0) + 1
-        window = {}
+        window = defaultdict(int)
         ans = (float("inf"), 0, 0)
         l = 0
         formed = 0
         for r, ch in enumerate(s):
-            window[ch] = window.get(ch, 0) + 1
             if ch in d:
+                window[ch] += 1
                 if window[ch] == d[ch]:
                     formed += 1
 
             while l < len(s) and formed == len(d):
                 if r - l + 1 < ans[0]:
                     ans = (r - l + 1, l, r)
-                if window.get(s[l], 0) == d.get(s[l], 0) and window.get(s[l], 0) != 0:
+                if s[l] in d and window[s[l]] == d[s[l]]:
                     formed -= 1
                 if s[l] in window:
                     window[s[l]] -= 1
