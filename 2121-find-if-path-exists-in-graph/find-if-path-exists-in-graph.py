@@ -22,7 +22,6 @@ class Solution:
             else:
                 graph[val].append(item)
 
-        print(graph)
         stack = [source]
         visited = set()
         while stack:
@@ -32,7 +31,6 @@ class Solution:
             visited.add(node)
             for item in graph.get(node, []):
                 stack.append(item)
-        print(visited)
         return destination in visited
 
 
