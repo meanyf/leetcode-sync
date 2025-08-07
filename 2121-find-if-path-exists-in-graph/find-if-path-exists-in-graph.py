@@ -12,16 +12,10 @@ class Solution:
     ) -> bool:
         if n == 1 and source == destination:
             return True
-        graph = {item: [] for item, val in edges}
+        graph = {}
         for item, val in edges:
-            graph[item].append(val)
-        for item, val in edges:
-            if val not in graph:
-                graph[val] = []
-                graph[val].append(item)
-            else:
-                graph[val].append(item)
-
+            graph.setdefault(item, []).append(val)
+            graph.setdefault(val, []).append(item)
         stack = [source]
         visited = set()
         while stack:
