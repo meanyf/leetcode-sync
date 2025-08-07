@@ -10,8 +10,6 @@ class Solution:
     def validPath(
         self, n: int, edges: List[List[int]], source: int, destination: int
     ) -> bool:
-        if n == 1 and source == destination:
-            return True
         graph = {}
         for item, val in edges:
             graph.setdefault(item, []).append(val)
