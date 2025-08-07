@@ -10,7 +10,6 @@ class Solution:
         g = {}
         for i, item in enumerate(rooms):
             g.setdefault(i, []).extend(item)
-        print(g)
         visited = set()
         stack = [0]
         while stack:
@@ -20,7 +19,6 @@ class Solution:
             visited.add(node)
             for item in g.get(node, []):
                 stack.append(item)
-        print(visited)
         return len(visited) == len(rooms)
 # @lc code=end
 
