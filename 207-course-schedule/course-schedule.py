@@ -18,30 +18,23 @@ class Solution:
             nodes.add(item)
             nodes.add(val)
 
-        stack = []
-        x = True
         def dfs(node):
-            nonlocal x
-            if x == False:
-                return
             visited.add(node)
             visiting.add(node)
             for nei in g[node]:
                 if nei in visiting:
-                    x = False
-                    return
+                    return False
                 if nei not in visited:
-                    dfs(nei)
+                    if not dfs(nei):
+                        return False
             visiting.discard(node)
-            stack.append(node)
-
+            return True
+        
         for node in nodes:
-            if node in visiting: return False
             if node not in visited:
-                dfs(node)
-
-        print(stack[::-1])
-        return x
+                if not dfs(node): 
+                    return False
+        return True
 
 
 # @lc code=end
