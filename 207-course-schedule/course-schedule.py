@@ -30,12 +30,6 @@ class Solution:
                     visiting.remove(node)
                     continue
 
-                # if node in visiting: # <- я спрашиваю про это, зачем это тут
-                #     return False  # <- я спрашиваю про это, зачем это тут
-                # if node in visited:  # <- я спрашиваю про это, зачем это тут
-                #     continue  # <- я спрашиваю про это, зачем это тут
-
-
                 visiting.add(node)
                 stack.append((node, True))
                 for nei in g[node]:
