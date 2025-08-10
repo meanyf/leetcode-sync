@@ -7,6 +7,7 @@
 # @lc code=start
 from collections import defaultdict
 
+
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         res = []
@@ -30,11 +31,11 @@ class Solution:
                     res.append(node)
                     continue
 
-                if node in visiting:
-                    return False
+                # if node in visiting:
+                #     return False
                 if node in visited:
                     continue
-                    
+
                 visiting.add(node)
                 stack.append((node, True))
                 for nei in g[node]:
@@ -45,4 +46,6 @@ class Solution:
                     stack.append((nei, False))
 
         return res[::-1]
+
+
 # @lc code=end
