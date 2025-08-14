@@ -54,7 +54,7 @@ class PeekingIterator:
         """
         :rtype: bool
         """
-        return bool(self.cache)
+        return self.cache is not None
 
 # Your PeekingIterator object will be instantiated and called as such:
 # iter = PeekingIterator(Iterator(nums))
