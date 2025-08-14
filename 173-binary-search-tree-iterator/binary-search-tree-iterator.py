@@ -12,19 +12,22 @@ class BSTIterator:
         self.stack = []
         self.cur = root
         self.res = deque([])
-        while self.cur or self.stack:
+
+    def next(self) -> int:
+        if self.stack and not self.cur:
+            node = self.stack.pop()
+            self.cur = node.right
+            return node.val
+        while self.cur:
             if self.cur:
                 self.stack.append(self.cur)
                 self.cur = self.cur.left
-            else:
-                node = self.stack.pop()
-                self.res.append(node.val)
-                self.cur = node.right
-
-    def next(self) -> int:
-        return self.res.popleft()
+        node = self.stack.pop()
+        self.cur = node.right
+        return node.val
+        # return self.res.popleft()
     def hasNext(self) -> bool:
-        return True if self.res else False
+        return True if self.cur or self.stack else False
 
 
 # Your BSTIterator object will be instantiated and called as such:
