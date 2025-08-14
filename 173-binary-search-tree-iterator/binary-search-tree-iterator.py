@@ -4,28 +4,20 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from collections import deque
 class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
         self.root = root
         self.stack = []
         self.cur = root
-        self.res = deque([])
 
     def next(self) -> int:
-        if self.stack and not self.cur:
-            node = self.stack.pop()
-            self.cur = node.right
-            return node.val
         while self.cur:
-            if self.cur:
-                self.stack.append(self.cur)
-                self.cur = self.cur.left
+            self.stack.append(self.cur)
+            self.cur = self.cur.left
         node = self.stack.pop()
         self.cur = node.right
         return node.val
-        # return self.res.popleft()
     def hasNext(self) -> bool:
         return True if self.cur or self.stack else False
 
