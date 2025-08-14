@@ -18,32 +18,39 @@
 #         Returns the next element in the iteration.
 #         :rtype: int
 #         """
-from collections import deque
 class PeekingIterator:
     def __init__(self, iterator):
         """
         Initialize your data structure here.
         :type iterator: Iterator
         """
-        self.stack = deque([])
-        while iterator.hasNext():
-            self.stack.append(iterator.next())
-        print(self.stack)
-        
+        self._hasNext = True
+        self.iterator = iterator
+        self.cache = None
+        if self.iterator.hasNext():
+            self.cache = self.next() 
 
     def peek(self):
         """
         Returns the next element in the iteration without advancing the iterator.
         :rtype: int
         """
-        return self.stack[0]
+        return self.cache
         
 
     def next(self):
         """
         :rtype: int
         """
-        return self.stack.popleft()
+        ans = self.cache
+        if self.iterator.hasNext():
+            self.cache = self.iterator.next()
+        else:
+            self.cache = None
+            return ans
+        if ans is None:
+            return self.cache
+        return ans
 
         
 
@@ -51,7 +58,7 @@ class PeekingIterator:
         """
         :rtype: bool
         """
-        return bool(self.stack)
+        return bool(self.cache)
 
 # Your PeekingIterator object will be instantiated and called as such:
 # iter = PeekingIterator(Iterator(nums))
