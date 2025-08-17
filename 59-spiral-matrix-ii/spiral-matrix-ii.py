@@ -20,12 +20,12 @@ class Solution:
                 for col in range(right, left - 1, - 1):
                     res[bottom][col] = cnt
                     cnt += 1
-                bottom -= 1
+            bottom -= 1
 
             if left <= right:
                 for row in range(bottom, top - 1, -1):
                     res[row][left] = cnt 
                     cnt += 1
-                left += 1
+            left += 1
         
         return res
