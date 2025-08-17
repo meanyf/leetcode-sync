@@ -1,8 +1,5 @@
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
-        l = len(mat) * len(mat[0])
-        cnt = 0 
-        order = 0
         res = []
         row = col = 0
         direction = 1
@@ -25,8 +22,3 @@ class Solution:
                     else:
                         col += 1
         return res
-
-
-            
-        return res
-
