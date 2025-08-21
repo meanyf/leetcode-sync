@@ -12,14 +12,12 @@ class Solution:
         n = len(nums)
         bst = float('-inf')
         @cache
-        def run(i, cur):
-            nonlocal bst
-            bst = max(bst, cur)
-            if i == n: 
-                return cur
-            if cur + nums[i] >= nums[i]:
-                return run(i + 1, cur + nums[i])
-            return run(i + 1, nums[i])
-        run(0, float('-inf'))
+        def run(i):
+            if i == n - 1: 
+                return nums[-1]
+            return max(nums[i], nums[i] + run(i + 1))
+            
+        for i in range(n):
+            bst = max(bst, run(i))
         return bst
 # @lc code=end
