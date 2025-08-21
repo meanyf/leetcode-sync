@@ -6,22 +6,20 @@
 
 
 # @lc code=start
+from functools import cache
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        best = float('-inf')
-        cur = 0
-        for num in nums:
-            cur = max(num, cur + num)
-            best = max(cur, best)
-        return best
-        #     if cur >= len(nums):
-        #         return 0
-        #     if nums[i] < 0 and nums[cur] > nums[i]:
-        #         return max(res, run(i + 1, i + 1, nums[i + 1]))
-        #     res += nums[i]
-        #     return max(res, run(i + 1, i + 1, res))
-
-        # return run(0, 0, 0)
-
-
+        n = len(nums)
+        bst = float('-inf')
+        @cache
+        def run(i, cur):
+            nonlocal bst
+            bst = max(bst, cur)
+            if i == n: 
+                return cur
+            if cur + nums[i] >= nums[i]:
+                return run(i + 1, cur + nums[i])
+            return run(i + 1, nums[i])
+        run(0, float('-inf'))
+        return bst
 # @lc code=end
