@@ -18,9 +18,11 @@ class Solution:
                 i += 1
             else:
                 if length != 0:
-                    length = lps[length - 1]
+                    length = lps[length - 1] # почему после 4 стало 0,
                 else:
+                    lps[i] = 0
                     i += 1
+            # print(length, lps)
         print(lps)
 
         i = j = 0
@@ -45,7 +47,7 @@ class Solution:
         #         if haystack[i + cnt] == needle[j]:
         #             cnt += 1
         #     if cnt == len(needle):
-        #         return i 
+        #         return i
         #     cnt = 0
         return -1
 
