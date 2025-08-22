@@ -5,10 +5,10 @@ class Solution:
         n = len(grid[0])
         @cache
         def run(x, y):
+            if x >= m or y >= n:
+                return float('inf')
             if x == m - 1 and y == n - 1:
                 return grid[x][y]
-            down = run(x + 1, y) + grid[x][y] if x + 1 < m else float('inf')
-            up = grid[x][y] + run(x, y + 1) if y + 1 < n else float('inf')
-            return min(down, up)
+            return min(run(x + 1, y) + grid[x][y], run(x, y + 1) + grid[x][y])
 
         return run(0, 0)
