@@ -9,6 +9,7 @@ class Solution:
                 return float('inf')
             if x == m - 1 and y == n - 1:
                 return grid[x][y]
-            return min(run(x + 1, y) + grid[x][y], run(x, y + 1) + grid[x][y])
+            item = grid[x][y]
+            return item + min(run(x + 1, y), run(x, y + 1))
 
         return run(0, 0)
