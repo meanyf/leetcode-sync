@@ -16,13 +16,3 @@ class Solution:
             if item in d:
                 res[i] = d[item]
         return res
-        # res = [-1] * len(nums1)
-        # for i, num in enumerate(nums1):
-        #     x = False
-        #     for item in nums2:
-        #         if item == num:
-        #             x = True
-        #         elif x and item > num:
-        #             res[i] = item
-        #             break
-        # return res
