@@ -5,12 +5,13 @@ class Solution:
         m = len(grid)
         n = len(grid[0])
         bst = 0
+        grid = [[1 if ch == '1' else 0 for ch in row] for row in matrix]
         @cache
         def run(x, y):
             nonlocal bst
             if x >= m or y >= n:
                 return 0
-            item = int(grid[x][y])
+            item = grid[x][y]
             side = min(run(x + 1, y), run(x, y + 1), run(x + 1, y + 1)) + item
             if item == 0:
                 side = 0
