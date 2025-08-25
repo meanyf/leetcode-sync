@@ -10,10 +10,10 @@ class Solution:
             item = nums[i % len(nums)]
             while stack and stack[-1] <= item:
                 stack.pop()
-            if stack:
-                d[item].append(stack[-1])
+            if stack and i < len(nums):
+                res[i] = stack[-1]
             stack.append(item)
-        for i, item in enumerate(nums):
-            if d[item]:
-                res[i] = d[item].pop()
+        # for i, item in enumerate(nums):
+        #     if d[item]:
+        #         res[i] = d[item].pop()
         return res
