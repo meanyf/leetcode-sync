@@ -1,8 +1,7 @@
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         nums = heights
-        if len(nums) == 1:
-            return nums[0]
+ 
         stack = []
         mx = 0
         res = [-1] * len(nums)
@@ -24,8 +23,6 @@ class Solution:
             if stack:
                 res2[i] = stack[-1]
             stack.append(i)
-        print(res)
-        print(res2)
         mx = 0
         for i, item in enumerate(nums):
             a = res[i] 
@@ -38,5 +35,4 @@ class Solution:
                 mx = max(mx, item * a)
             else:
                 mx = max(mx, (res[i] - res2[i] - 1) * item)
-            print(mx)
         return mx
