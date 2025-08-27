@@ -9,7 +9,6 @@ class Solution:
                     res[i] = 0
                 else:
                     res[i] += 1
-                    n = len(res)
             for i, item in enumerate(res + [0]): 
                 while stack and res[stack[-1]] > item:
                     height = res[stack.pop()] 
