@@ -5,12 +5,11 @@ class Solution:
         used = set()
         while True:
             ans = 0
-            item = str(res)
-            if item in used:
-                return False
-            used.add(item)
             for item in res:
                 ans += int(item)**2
+            if ans in used:
+                return False
+            used.add(ans)
             if ans == 1:
                 return True
             res = list(str(ans))
