@@ -3,18 +3,12 @@ class Solution:
         s = set(nums)
         mx = 0
         for num in nums:
-            s.discard(num)
-            cnt = 1
-            cur_num = num + 1
-            while cur_num in s:
-                s.discard(cur_num)
-                cur_num += 1
-                cnt += 1
-                
-            cur_num = num - 1
-            while cur_num in s:
-                s.discard(cur_num)
-                cur_num -= 1
-                cnt += 1
-            mx = max(mx, cnt)
+            cnt = 0
+            if num - 1 not in s:
+                cur_num = num
+                while cur_num in s:
+                    s.discard(cur_num)
+                    cur_num += 1
+                    cnt += 1
+                mx = max(mx, cnt)
         return mx
