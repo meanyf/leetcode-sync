@@ -4,14 +4,22 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         res = []
-        for row in range(len(matrix)):
-            for col in range(len(matrix[row])):
-                if matrix[row][col] == 0:
-                    res.append((row, col))
+        zero_rows = set()
+        zero_cols = set()
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                if matrix[i][j] == 0:
+                    zero_rows.add(i)
+                    zero_cols.add(j)
+        for i in range(len(matrix)):
+            if i in zero_rows:
+                for j in range(len(matrix[i])):
+                    matrix[i][j] = 0
         
-        for row, col in res:
-            for i in range(len(matrix)):
-                matrix[i][col] = 0
-            
-            for j in range(len(matrix[row])):
-                matrix[row][j] = 0
+        for j in range(len(matrix[0])):
+            if j in zero_cols:
+                for i in range(len(matrix)):
+                    matrix[i][j] = 0
+        
+
+
