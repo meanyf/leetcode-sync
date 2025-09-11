@@ -1,24 +1,27 @@
 class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
+    def numIslands(self, grid: list[list[str]]) -> int:
+        if not grid or not grid[0]:
             return 0
-        
-        visited = set()
         rows, cols = len(grid), len(grid[0])
-        ans = 0
-        def dfs(r, c):
-            if r > rows - 1 or c > cols - 1: return 0
-            if r < 0 or c < 0: return 0
-            if grid[r][c] == '0' or (r, c) in visited: return 0
-            visited.add((r, c))
-            dfs(r + 1, c)
-            dfs(r - 1, c)
-            dfs(r, c + 1)
-            dfs(r, c - 1)
+        total = rows * cols
+        visited_count = 0
+        islands = 0
 
-        for i in range(rows):
-            for j in range(cols):
-                if grid[i][j] == '1' and (i, j) not in visited:
-                    dfs(i, j)
-                    ans += 1
-        return ans
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == '1':
+                    islands += 1
+                    stack = [(r, c)]
+                    while stack:
+                        x, y = stack.pop()
+                        if 0 <= x < rows and 0 <= y < cols and grid[x][y] == '1':
+                            grid[x][y] = '0'
+                            visited_count += 1
+                            stack.append((x+1, y))
+                            stack.append((x-1, y))
+                            stack.append((x, y+1))
+                            stack.append((x, y-1))
+                    # if we've visited every cell, we can return early
+                    if visited_count == total:
+                        return islands
+        return islands
