@@ -1,27 +1,13 @@
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         rows, cols = len(grid), len(grid[0])
+        dirs = [(0, 1), (1, 0), (-1, 0), (0, -1)]
         ans = 0
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == 1:
-                    if i + 1 >= rows:
-                        ans += 1
-                    elif grid[i + 1][j] == 0:
-                        ans += 1
-
-                    if j + 1 >= cols:
-                        ans += 1
-                    elif grid[i][j + 1] == 0:
-                        ans += 1
-
-                    if i - 1 < 0:
-                        ans += 1
-                    elif grid[i - 1][j] == 0:
-                        ans += 1
-
-                    if j - 1 < 0:
-                        ans += 1
-                    elif grid[i][j - 1] == 0:
-                        ans += 1
+                    for di, dj in dirs:
+                        ni, nj = i + di, j + dj
+                        if ni < 0 or ni >= rows or nj < 0 or nj >= cols or grid[ni][nj] == 0:
+                             ans += 1
         return ans
