@@ -5,17 +5,16 @@ class Solution:
         rows, cols = len(image), len(image[0])
         stack = [(sr, sc)]
         dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-        visited = set()
+        original_color = image[sr][sc]
+        if original_color == color:
+            return image
         while stack:
             i, j = stack.pop()
-            visited.add((i, j))
+            image[i][j] = color
             for di, dj in dirs:
                 ni, nj = di + i, dj + j
-                if (ni, nj) in visited:
-                    continue
                 if ni < 0 or ni >= rows or nj < 0 or nj >= cols:
                     continue
-                if image[i][j] == image[ni][nj]:
+                if original_color == image[ni][nj]:
                     stack.append((ni, nj))
-            image[i][j] = color
         return image
