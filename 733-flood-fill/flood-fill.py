@@ -10,11 +10,11 @@ class Solution:
             return image
         while stack:
             i, j = stack.pop()
-            image[i][j] = color
             for di, dj in dirs:
                 ni, nj = di + i, dj + j
                 if ni < 0 or ni >= rows or nj < 0 or nj >= cols:
                     continue
                 if original_color == image[ni][nj]:
                     stack.append((ni, nj))
+            image[i][j] = color
         return image
