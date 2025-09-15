@@ -29,5 +29,4 @@ class Solution:
                     if isRegion:
                         for cur_i, cur_j in region:
                             board[cur_i][cur_j] = 'X'
-                visited.add((i, j))
                 
