@@ -23,7 +23,7 @@ class Solution:
                             if ni < 0 or ni >= rows or nj < 0 or nj >= cols:
                                 isRegion = False
                                 continue
-                            if board[ni][nj] == 'O':
+                            if board[ni][nj] == 'O' and (ni, nj) not in visited:
                                 stack.append((ni, nj))
                                 region.append((ni, nj))
                     if isRegion:
