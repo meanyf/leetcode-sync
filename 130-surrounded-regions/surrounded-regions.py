@@ -25,7 +25,6 @@ class Solution:
                                 continue
                             if board[ni][nj] == 'O' and (ni, nj) not in visited:
                                 stack.append((ni, nj))
-                                region.append((ni, nj))
                     if isRegion:
                         for cur_i, cur_j in region:
                             board[cur_i][cur_j] = 'X'
