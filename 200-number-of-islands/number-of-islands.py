@@ -1,7 +1,7 @@
 from collections import deque
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid and not grid[0]:
+        if not grid or not grid[0]:
             return []
         rows, cols = len(grid), len(grid[0])
         visited = [[False] * cols for _ in range(rows)]
@@ -9,7 +9,7 @@ class Solution:
         res = 0
         def bfs(start_r: int, start_c: int) -> None:
             q = deque()
-            q.append((r, c))
+            q.append((start_r, start_c))
             visited[start_r][start_c] = True
             while q:
                 cur_r, cur_c = q.popleft()
