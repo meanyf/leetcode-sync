@@ -2,11 +2,11 @@ from collections import deque
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
         if not grid or not grid[0]: return -1
+        if grid[0][0] == 1 or grid[-1][-1] == 1: return -1
         rows, cols = len(grid), len(grid[0])
         dirs = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]
         visited = [[False] * cols for _ in range(rows)]
         def bfs(start_r, start_c):
-            if grid[start_r][start_c] == 1: return -1
             dist = 1
             q = deque()
             q.append((start_r, start_c, dist))
