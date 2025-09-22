@@ -12,8 +12,7 @@ class Solution:
                     q.append((r, c))
         res = 0
         while q:
-            level = []
-            while q:
+            for _ in range(len(q)):
                 r, c = q.popleft()
                 visited[r][c] = True
                 for dr, dc in dirs:
@@ -23,9 +22,8 @@ class Solution:
                     if visited[nr][nc]:
                         continue
                     if grid[nr][nc] == 1:
-                        level.append((nr, nc))
                         visited[nr][nc] = True
-            q.extend(level)
+                        q.append((nr, nc))
             res += 1
         for r in range(rows):
             for c in range(cols):
