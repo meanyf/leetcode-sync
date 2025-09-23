@@ -10,6 +10,8 @@ class Solution:
             for c in range(cols):
                 if grid[r][c] == 2:
                     q.append((r, c))
+                    visited[r][c] = True
+
         res = 0
         while q:
             for _ in range(len(q)):
