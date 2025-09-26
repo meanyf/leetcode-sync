@@ -1,17 +1,21 @@
+#
+# @lc app=leetcode id=279 lang=python3
+#
+# [279] Perfect Squares
+#
+
+# @lc code=start
+from functools import cache
 from math import sqrt
-from collections import deque
 class Solution:
     def numSquares(self, n: int) -> int:
-        q = deque()
-        q.append((n, 0))
-        visited = set([n])
-        while q:
-            cur, dist = q.popleft()
-            if cur == 0:
-                return dist
-            for i in range(1, int(sqrt(cur)) + 1):
-                nxt = cur - i*i
-                if nxt not in visited:
-                    visited.add(nxt)
-                    q.append((nxt, dist + 1))
-        
+        @cache
+        def run(n):
+            if n == 0: return 0 # дошли до конца
+            res = float('inf')
+            for i in range(1, int(sqrt(n)) + 1):
+                res = min(res, 1 + run(n - i*i))
+            return res
+        return run(n)
+    
+# @lc code=end
