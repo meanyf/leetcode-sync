@@ -7,7 +7,6 @@ class Solution:
         while q:
             cur, dist = q.popleft()
             if cur == endGene:
-                print(cur)
                 return dist
             for item in bank:
                 if item in visited:
