@@ -3,7 +3,6 @@ class Solution:
         endWords = set(wordList)
         if endWord not in endWords:
             return 0
-        visited = set([beginWord])
         q = deque()
         q.append((beginWord, 1))
         while q:
@@ -16,10 +15,8 @@ class Solution:
                         lst = list(cur)
                         lst[i] = chr(j)
                         item = ''.join(lst)
-                        if item in visited:
-                            continue
                         if item in endWords:
                             q.append((item, dist + 1))
-                            visited.add(item)
+                            endWords.discard(item)
                 
         return 0
