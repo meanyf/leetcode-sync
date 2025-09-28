@@ -6,7 +6,6 @@ class Solution:
         visited = set([beginWord])
         q = deque()
         q.append((beginWord, 1))
-        differ_by_one = lambda cur, item: len(cur) == len(item) and sum(a != b for a, b in zip(cur, item)) == 1
         while q:
             cur, dist = q.popleft()
             if cur == endWord:
