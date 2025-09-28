@@ -13,7 +13,9 @@ class Solution:
             for i, ch in enumerate(cur):
                 for j in range(ord('a'), ord('z') + 1):
                     if ch != chr(j):
-                        item = cur[:i] + chr(j) + cur[i+1:]
+                        lst = list(cur)
+                        lst[i] = chr(j)
+                        item = ''.join(lst)
                         if item in visited:
                             continue
                         if item in endWords:
