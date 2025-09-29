@@ -19,9 +19,11 @@ class Solution:
                 right = d.get(node.right, 0)
                 left = d.get(node.left, 0)
                 d[node] = max(node.val, node.val + right, node.val + left)
-                mx = max(mx, node.val + right + left, d[node])
+                mx = max(mx, node.val + right + left)
             else:
                 stack.append((node, True))
                 stack.append((node.right, False))
                 stack.append((node.left, False))
+        for key, val in d.items():
+            mx = max(mx, val)
         return mx
