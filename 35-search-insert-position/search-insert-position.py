@@ -13,7 +13,7 @@ class Solution:
             mi = (lo + hi) // 2
             if nums[mi] == target:
                 return mi
-            if nums[mi] >= target:
+            if nums[mi] > target:
                 hi = mi - 1
             else:
                 lo = mi + 1
