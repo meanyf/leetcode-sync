@@ -8,10 +8,7 @@ class Solution:
                 if cnt > x:
                     cnt = item
                     j += 1
-                elif cnt == x:
-                    if i != len(nums) - 1 and item != 0:
-                        j += 1
-                    cnt = 0
+                    
             return cnt <= x and j <= k
         lo, hi = max(nums), sum(nums)
         ans = None
