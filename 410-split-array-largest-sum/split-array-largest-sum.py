@@ -7,7 +7,6 @@ class Solution:
                 cnt += item
                 if cnt > x:
                     cnt = item
-                    if cnt > x: return False
                     j += 1
                 elif cnt == x:
                     if i != len(nums) - 1 and item != 0:
@@ -17,7 +16,6 @@ class Solution:
         lo, hi = max(nums), sum(nums)
         ans = None
         while lo <= hi:
-            print(lo, hi)
             mi = (lo + hi ) // 2
             if feasible(mi):
                 ans = mi
