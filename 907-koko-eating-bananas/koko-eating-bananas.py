@@ -1,18 +1,16 @@
+from math import ceil
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         def feasible(speed):
-            cnt = len(piles)
+            cnt = 0
             for item in piles:
-                if item > speed:
-                    cnt += item // speed
-                    if item % speed == 0:
-                        cnt -= 1
+                cnt += ceil(item / speed)
+                if cnt > h: return False
             return cnt <= h
 
         lo, hi = 1, max(piles)
         ans = None
         while lo <= hi:
-            print(lo, hi)
             mi = (lo + hi) // 2
             if feasible(mi):
                 ans = mi
