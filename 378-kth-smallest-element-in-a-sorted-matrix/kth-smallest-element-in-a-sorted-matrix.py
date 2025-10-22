@@ -12,11 +12,13 @@ class Solution:
             return cnt
         lo, hi = matrix[0][0], matrix[-1][-1]
         res = None
-        while lo < hi:
+        ans = None
+        while lo <= hi:
             mi = (lo + hi) // 2
             res = feasible(mi)
             if res >= k:
-                hi = mi
+                ans = mi
+                hi = mi - 1
             else:
                 lo = mi + 1
-        return lo
+        return ans
