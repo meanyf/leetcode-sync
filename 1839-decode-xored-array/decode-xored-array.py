@@ -3,6 +3,6 @@ class Solution:
         prev = first
         res = [prev]
         for i, item in enumerate(encoded):
-            res.append(item ^ prev)
             prev = item ^ prev
+            res.append(prev)
         return res
