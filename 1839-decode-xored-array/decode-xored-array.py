@@ -1,8 +1,8 @@
 class Solution:
     def decode(self, encoded: List[int], first: int) -> List[int]:
-        res = [first]
-        cur = first
+        prev = first
+        res = [prev]
         for i, item in enumerate(encoded):
-            res.append(item ^ cur)
-            cur = item ^ cur
+            res.append(item ^ prev)
+            prev = item ^ prev
         return res
