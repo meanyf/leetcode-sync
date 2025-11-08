@@ -4,11 +4,13 @@ class Solution:
         def feasible(x):
             cnt = 0
             l, r = 0, 1
-            for r in range(1, len(nums)):
-                while nums[r] - nums[l] > x:
+            while l < len(nums) - 1:
+                if r < len(nums) and nums[r] - nums[l] <= x:
+                    r += 1
+                else:
+                    cnt += r - l - 1
                     l += 1
-                cnt += r - l
-            return cnt
+            return cnt  
         lo, hi = 0, nums[-1] - nums[0]
         ans = None
         while lo <= hi:
