@@ -1,7 +1,6 @@
 class Solution:
     def smallestDistancePair(self, nums: List[int], k: int) -> int:
         nums.sort()
-        print(nums)
         def feasible(x):
             cnt = 0
             l, r = 0, 1
