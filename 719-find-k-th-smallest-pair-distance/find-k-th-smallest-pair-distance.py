@@ -13,13 +13,10 @@ class Solution:
         lo, hi = 0, nums[-1] - nums[0]
         ans = None
         while lo <= hi:
-            print(lo, hi)
             mi = (lo + hi) // 2
-            print(mi, feasible(mi))
             if feasible(mi) >= k:
                 ans = mi
                 hi = mi - 1
             else:
                 lo = mi + 1
-        print(lo, hi, mi)
-        return ans if ans is not None else hi
+        return ans 
