@@ -3,12 +3,7 @@ class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
         n = len(nums1) + len(nums2)
         def feasible(x):
-            cnt = 0
-            for item in nums1:
-                cnt += 1 if item <= x else 0
-            for item in nums2:
-                cnt += 1 if item <= x else 0
-            return cnt
+            return bisect_right(nums1, x) + bisect_right(nums2, x)
         def bin_search(target):
             ans = None
             lo = min(nums1[0] if nums1 else float('inf'), nums2[0] if nums2 else float('inf'))
