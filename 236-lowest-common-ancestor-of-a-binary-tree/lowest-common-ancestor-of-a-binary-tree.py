@@ -8,7 +8,7 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         stack = [root]
-        d = {}
+        d = {root: None}
         while stack:
             node = stack.pop()
             if node:
@@ -19,14 +19,11 @@ class Solution:
                     d[node.left] = node
                     stack.append(node.left)
         cur = p
-        st = set([cur])
-        while cur in d:
-            st.add(d[cur])
+        st = set()
+        while cur:
+            st.add(cur)
             cur = d[cur]
-        cur = q
-        while cur in d:
-            if cur in st:
-                return cur
-            cur = d[cur]
-        return cur
+        while q not in st:
+            q = d[q]
+        return q
         
