@@ -1,8 +1,9 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        mx = ''
+        mx = -math.inf
+        best_l = -1
+        best_r = -2
         def expand(a, b):
-            nonlocal mx
             res = 0
             l, r = a, b
             while l >= 0 and r < len(s):
@@ -11,12 +12,15 @@ class Solution:
                     r += 1
                 else:
                     break
-            if len(mx) < r - l - 1:
-                mx = s[l + 1: r]
+            return l + 1, r - 1
         
         for i in range(len(s)):
-            expand(i, i)
-            expand(i, i + 1)
-        return mx
-        # for i in range(len(s) - 1):
-            # mx = max(mx, expand(i, i + 1))
+            cur_l, cur_r = expand(i, i)
+            if mx < cur_r - cur_l + 1:
+                mx = cur_r - cur_l + 1
+                best_l, best_r = cur_l, cur_r
+            cur_l, cur_r = expand(i, i + 1)
+            if mx < cur_r - cur_l + 1:
+                mx = cur_r - cur_l + 1
+                best_l, best_r = cur_l, cur_r
+        return s[best_l: best_r + 1]
