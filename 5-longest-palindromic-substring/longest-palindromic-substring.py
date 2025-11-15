@@ -1,10 +1,8 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        mx = -math.inf
-        best_l = -1
-        best_r = -2
+        mx = 0
+        best_l = besr_r = 0
         def expand(a, b):
-            res = 0
             l, r = a, b
             while l >= 0 and r < len(s):
                 if s[l] == s[r]:
