@@ -1,11 +1,8 @@
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        if len(nums) == 1:
-            return False
         d = {0: 1}
         cnt = sm = 0
         zero_cnt = 0
-        
         for i, item in enumerate(nums):
             sm += item
             if sm % k in d:
