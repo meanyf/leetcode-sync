@@ -4,11 +4,12 @@
 
 class Solution:
     def rand10(self):
-        """
-        :rtype: int
-        """
         while True:
-            ans = (rand7() - 1) * 7 + rand7()
-            if ans <= 40:
-                return (ans - 1) % 10  + 1
+            a = rand7()  # 1-7
+            b = rand7()  # 1-7
+            c = rand7()  # 1-7
             
+            num = (a - 1) * 49 + (b - 1) * 7 + c  # 1-343
+            
+            if num <= 340:
+                return (num - 1) % 10 + 1
