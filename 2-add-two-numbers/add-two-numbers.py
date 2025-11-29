@@ -1,10 +1,3 @@
-#
-# @lc app=leetcode id=2 lang=python3
-#
-# [2] Add Two Numbers
-#
-
-# @lc code=start
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -12,31 +5,30 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode(0)
-        res= dummy
+        def reverse_list(l):
+            prev = None
+            while l:
+                nxt = l.next
+                l.next = prev
+                prev = l
+                l = nxt
+            return prev
+
+        head = cur = ListNode()
         add = 0
-        head = l1
+        prev = None
         while l1 or l2:
-            ans = 0
-            ans += l1.val if l1 else 0
-            ans += l2.val if l2 else 0
-            ans += add
-            val = 0
-            if ans >= 10:
-                val = ans - 10
+            ans = (l1.val if l1 else 0) + (l2.val if l2 else 0) + add
+            add = 0
+            if ans > 9:
+                ans = ans % 10
                 add = 1
-            else:
-                val = ans
-                add = 0
-            dummy.next = ListNode(val)
-            dummy = dummy.next
-            if l1:
-                l1 = l1.next
-            if l2:
-                l2 = l2.next
-        if add == 1:
-            dummy.next = ListNode(1)
-
-        return res.next
-# @lc code=end
-
+            cur.val = ans
+            prev = cur
+            cur.next = ListNode(1)
+            cur = cur.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+        if not add:
+            prev.next = None
+        return head
