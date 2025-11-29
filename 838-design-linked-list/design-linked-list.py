@@ -8,29 +8,34 @@ class MyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.size = 0
 
     def get(self, index: int) -> int:
+        if index >= self.size: return -1
         cur = self.head
         for _ in range(index):
-            cur = cur.next if cur else None
-        return cur.val if cur else -1
+            cur = cur.next
+        return cur.val
 
     def addAtHead(self, val: int) -> None:
         self.head = Node(val, self.head)
-        if self.tail is None:
+        if self.size == 0:
             self.tail = self.head
-
+        self.size += 1
+        
     def addAtTail(self, val: int) -> None:
-        if self.head is None:
+        if self.size == 0:
             self.head = Node(val)
             self.tail = self.head
         else:
             self.tail.next = Node(val)
             self.tail = self.tail.next
+        self.size += 1
 
     def addAtIndex(self, index: int, val: int) -> None:
+        if index > self.size: return None
+        self.size += 1
         if not self.head:
-            if index > 0: return None
             self.head = self.tail = Node(val)
             return
         dummy = Node(0, self.head)
@@ -38,7 +43,6 @@ class MyLinkedList:
         for _ in range(index):
             cur = cur.next if cur else None
         
-        if cur is None: return None
         if cur.next is None:
             self.tail.next = Node(val)
             self.tail = self.tail.next
@@ -51,13 +55,12 @@ class MyLinkedList:
 
 
     def deleteAtIndex(self, index: int) -> None:
-        if not self.head: return None
+        if self.size == 0 or index >= self.size:
+            return None
         dummy = Node(0, self.head)
         cur = dummy
         for _ in range(index):
             cur = cur.next if cur else None
-        if cur is None: return None
-        if cur.next is None: return None
         if cur.next.next is None:
             self.tail = None if cur is dummy else cur
             
@@ -65,7 +68,7 @@ class MyLinkedList:
         self.head = dummy.next
         if not self.tail:
             self.tail = self.head
-        ...
+        self.size -= 1
 
 
 # Your MyLinkedList object will be instantiated and called as such:
