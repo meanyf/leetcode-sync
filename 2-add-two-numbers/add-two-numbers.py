@@ -6,14 +6,13 @@
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         head = cur = ListNode()
-        add = 0
-        prev = None
-        while l1 or l2 or add:
-            ans = (l1.val if l1 else 0) + (l2.val if l2 else 0) + add
-            add = 0
+        carry = 0
+        while l1 or l2 or carry:
+            ans = (l1.val if l1 else 0) + (l2.val if l2 else 0) + carry
+            carry = 0
             if ans > 9:
                 ans = ans % 10
-                add = 1
+                carry = 1
             cur.next = ListNode(ans)
             cur = cur.next
             l1 = l1.next if l1 else None
