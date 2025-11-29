@@ -59,8 +59,8 @@ class MyLinkedList:
         if cur is None: return None
         if cur.next is None: return None
         if cur.next.next is None:
-            self.tail = cur
-
+            self.tail = None if cur is dummy else cur
+            
         cur.next = cur.next.next
         self.head = dummy.next
         if not self.tail:
