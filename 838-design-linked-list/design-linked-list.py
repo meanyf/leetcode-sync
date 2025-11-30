@@ -1,7 +1,8 @@
 class Node:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=0, next=None, prev=None):
         self.val = val
         self.next = next
+        self.prev = prev
 
 class MyLinkedList:
 
@@ -18,9 +19,11 @@ class MyLinkedList:
         return cur.val
 
     def addAtHead(self, val: int) -> None:
-        self.head = Node(val, self.head)
+        self.head = Node(val, next=self.head)
         if self.size == 0:
             self.tail = self.head
+        else:
+            self.head.next.prev = self.head
         self.size += 1
         
     def addAtTail(self, val: int) -> None:
@@ -28,7 +31,7 @@ class MyLinkedList:
             self.head = Node(val)
             self.tail = self.head
         else:
-            self.tail.next = Node(val)
+            self.tail.next = Node(val, prev=self.tail)
             self.tail = self.tail.next
         self.size += 1
 
@@ -39,13 +42,15 @@ class MyLinkedList:
             self.head = self.tail = Node(val)
         elif index == 0:
             self.head = Node(val, self.head)
+            self.head.next.prev = self.head
         elif self.size == index:
-            self.tail.next = Node(val)
+            self.tail.next = Node(val, prev=self.tail)
             self.tail = self.tail.next
         else:
             for _ in range(index - 1):
                 cur = cur.next
-            cur.next = Node(val, cur.next)
+            cur.next = Node(val, next=cur.next, prev=cur)
+            cur.next.next.prev = cur.next
         self.size += 1
         
 
@@ -62,7 +67,9 @@ class MyLinkedList:
                 cur = cur.next
             if index == self.size - 1:
                 self.tail = cur
-            cur.next = cur.next.next
+            else:
+                cur.next = cur.next.next
+                cur.next.prev = cur
         self.size -= 1
         
 
