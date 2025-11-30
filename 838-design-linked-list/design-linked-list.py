@@ -18,10 +18,7 @@ class MyLinkedList:
         return cur.val
 
     def addAtHead(self, val: int) -> None:
-        self.dummy.next = Node(val, next=self.dummy.next, prev=self.dummy)
-        if self.size > 0: 
-            self.dummy.next.next.prev = self.dummy.next
-        self.size += 1
+        self.addAtIndex(0, val)
         
     def addAtTail(self, val: int) -> None:
         self.addAtIndex(self.size, val)
