@@ -40,19 +40,15 @@ class MyLinkedList:
         if cur.next.next is not None:
             cur.next.next.prev = cur.next
         self.size += 1
-        
-
 
     def deleteAtIndex(self, index: int) -> None:
         if index >= self.size: 
             return 
-        if self.size == 0:
-            return
         cur = self.dummy.next
         for _ in range(index):
             cur = cur.next
         cur.prev.next = cur.next
-        if self.size > 1 and index != self.size - 1:
+        if index != self.size - 1:
             cur.next.prev = cur.prev
         self.size -= 1
         
