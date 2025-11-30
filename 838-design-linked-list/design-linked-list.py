@@ -62,14 +62,15 @@ class MyLinkedList:
             self.head = self.tail = None
         elif index == 0:
             self.head = self.head.next
+            self.head.prev = None
+        elif index == self.size - 1:
+            self.tail = self.tail.prev
+            self.tail.next = None
         else:
             for _ in range(index - 1):
                 cur = cur.next
-            if index == self.size - 1:
-                self.tail = cur
-            else:
-                cur.next = cur.next.next
-                cur.next.prev = cur
+            cur.next = cur.next.next
+            cur.next.prev = cur
         self.size -= 1
         
 
