@@ -7,12 +7,15 @@ class Node:
 class MyLinkedList:
 
     def __init__(self):
-        self.dummy = Node()
+        self.left = Node()
+        self.right = Node()
+        self.left.next = self.right
+        self.right.prev = self.left
         self.size = 0
 
     def get(self, index: int) -> int:
         if index >= self.size: return -1
-        cur = self.dummy.next
+        cur = self.left.next
         for _ in range(index):
             cur = cur.next
         return cur.val
@@ -26,7 +29,7 @@ class MyLinkedList:
     def addAtIndex(self, index: int, val: int) -> None:
         if index > self.size: 
             return 
-        cur = self.dummy
+        cur = self.left
         for _ in range(index):
             cur = cur.next
         cur.next = Node(val, next=cur.next, prev=cur)
@@ -37,7 +40,7 @@ class MyLinkedList:
     def deleteAtIndex(self, index: int) -> None:
         if index >= self.size: 
             return 
-        cur = self.dummy.next
+        cur = self.left.next
         for _ in range(index):
             cur = cur.next
         cur.prev.next = cur.next
