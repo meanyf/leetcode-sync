@@ -33,8 +33,7 @@ class MyLinkedList:
         for _ in range(index):
             cur = cur.next
         cur.next = Node(val, next=cur.next, prev=cur)
-        if cur.next.next is not None:
-            cur.next.next.prev = cur.next
+        cur.next.next.prev = cur.next
         self.size += 1
 
     def deleteAtIndex(self, index: int) -> None:
