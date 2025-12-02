@@ -16,8 +16,6 @@ class LRUCache:
         self.capacity = capacity
 
     def get(self, key: int) -> int:
-        if len(self.d) == 0:
-            return -1
         if key not in self.d:
             return -1
         node = self.d[key]
