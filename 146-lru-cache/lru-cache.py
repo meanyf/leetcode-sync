@@ -15,20 +15,24 @@ class LRUCache:
         self.d = {}
         self.capacity = capacity
 
-    def get(self, key: int) -> int:
-        if key not in self.d:
-            return -1
-        node = self.d[key]
-        nxt, prev = node.next, node.prev
+    def remove(self, node):
+        prev, nxt = node.prev, node.next
         prev.next = nxt
         nxt.prev = prev
 
-        nxt, prev = self.left.next, self.left
+    def insert(self, node):
+        prev, nxt = self.left, self.left.next 
         prev.next = node
         nxt.prev = node
         node.prev = prev
         node.next = nxt
-        return node.val
+
+    def get(self, key: int) -> int:
+        if key not in self.d:
+            return -1
+        self.remove(self.d[key])
+        self.insert(self.d[key])
+        return self.d[key].val
 
     def put(self, key: int, value: int) -> None:
         if key in self.d:
@@ -36,11 +40,11 @@ class LRUCache:
             self.get(key)
             return
         if len(self.d) == self.capacity:
-            del_node = self.right.prev
-            nxt, prev = del_node.next, del_node.prev
+            node = self.right.prev
+            nxt, prev = node.next, node.prev
             prev.next = nxt
             nxt.prev = prev
-            self.d.pop(del_node.key, None)
+            self.d.pop(node.key, None)
 
         node, nxt, prev = Node(val=value, key=key), self.left.next, self.left
         nxt.prev = node
