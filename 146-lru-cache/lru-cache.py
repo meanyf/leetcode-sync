@@ -41,9 +41,7 @@ class LRUCache:
             return
         if len(self.d) == self.capacity:
             node = self.right.prev
-            nxt, prev = node.next, node.prev
-            prev.next = nxt
-            nxt.prev = prev
+            self.remove(node)
             self.d.pop(node.key, None)
 
         node = Node(val=value, key=key)
