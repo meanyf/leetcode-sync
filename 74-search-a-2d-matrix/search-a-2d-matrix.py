@@ -3,7 +3,12 @@ class Solution:
         lo, hi = 0, len(matrix) - 1
         while lo <= hi:
             mi = (lo + hi) // 2
-            if matrix[mi][0] <= target <= matrix[mi][-1]:
+            first, last = matrix[mi][0], matrix[mi][-1]
+            if target < first:
+                hi = mi - 1
+            elif last < target:
+                lo = mi + 1
+            else:
                 row = mi
                 lo, hi = 0, len(matrix[0]) - 1
                 while lo <= hi:
@@ -15,9 +20,5 @@ class Solution:
                     else:
                         hi = mi - 1
                 return False
-            if matrix[mi][0] < target:
-                lo = mi + 1
-            else:
-                hi = mi - 1
         return False
 
