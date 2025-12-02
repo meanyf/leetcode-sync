@@ -38,7 +38,8 @@ class MyLinkedList:
             cur = cur.next
         
         nxt = cur.next
-        cur.next = Node(val, next=cur.next, prev=cur)
+        node = Node(val, next=nxt, prev=cur)
+        cur.next = node
         nxt.prev = cur.next
         self.size += 1
 
