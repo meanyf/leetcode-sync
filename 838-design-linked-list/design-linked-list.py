@@ -40,7 +40,7 @@ class MyLinkedList:
         nxt = cur.next
         node = Node(val, next=nxt, prev=cur)
         cur.next = node
-        nxt.prev = cur.next
+        nxt.prev = node
         self.size += 1
 
     def deleteAtIndex(self, index: int) -> None:
