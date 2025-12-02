@@ -1,25 +1,23 @@
-#
-# @lc app=leetcode id=74 lang=python3
-#
-# [74] Search a 2D Matrix
-#
-
-# @lc code=start
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        nums = [item for row in matrix for item in row]
-        print(nums)
-        lo = 0
-        hi = len(nums) - 1
+        lo, hi = 0, len(matrix) - 1
         while lo <= hi:
             mi = (lo + hi) // 2
-            if target == nums[mi]:
-                return True
-            if target > nums[mi]:
+            if matrix[mi][0] <= target <= matrix[mi][-1]:
+                row = mi
+                lo, hi = 0, len(matrix[0]) - 1
+                while lo <= hi:
+                    mi = (lo + hi) // 2
+                    if matrix[row][mi] == target:
+                        return True
+                    if matrix[row][mi] < target:
+                        lo = mi + 1
+                    else:
+                        hi = mi - 1
+                return False
+            if matrix[mi][0] < target:
                 lo = mi + 1
             else:
                 hi = mi - 1
         return False
-
-# @lc code=end
 
