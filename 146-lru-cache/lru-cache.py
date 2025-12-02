@@ -44,19 +44,12 @@ class LRUCache:
             nxt.prev = prev
             self.d.pop(del_node.key, None)
 
-            node, nxt, prev = Node(val=value, key=key), self.left.next, self.left
-            nxt.prev = node
-            prev.next = node
-            node.prev = prev
-            node.next = nxt
-            self.d[key] = node
-        else:
-            node, nxt, prev = Node(val=value, key=key), self.left.next, self.left
-            nxt.prev = node
-            prev.next = node
-            node.prev = prev
-            node.next = nxt
-            self.d[key] = node
+        node, nxt, prev = Node(val=value, key=key), self.left.next, self.left
+        nxt.prev = node
+        prev.next = node
+        node.prev = prev
+        node.next = nxt
+        self.d[key] = node
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
