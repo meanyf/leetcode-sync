@@ -37,7 +37,8 @@ class LRUCache:
     def put(self, key: int, value: int) -> None:
         if key in self.d:
             self.d[key].val = value
-            self.get(key)
+            self.remove(self.d[key])
+            self.insert(self.d[key])
             return
         if len(self.d) == self.capacity:
             node = self.right.prev
