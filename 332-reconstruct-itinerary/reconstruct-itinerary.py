@@ -1,28 +1,22 @@
-#
-# @lc app=leetcode id=332 lang=python3
-#
-# [332] Reconstruct Itinerary
-#
-
-# @lc code=start
-from collections import deque, defaultdict
-
-
+from collections import defaultdict
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        if not tickets:
-            return []
-        tickets.sort()
-        g = defaultdict(deque)
+        g = defaultdict(list)
         for src, dest in tickets:
             g[src].append(dest)
-        stack = ["JFK"]
-        res = []
+        for src in g:
+            g[src].sort(reverse=True)
+        stack = ['JFK']
+        route = []
         while stack:
-            while g[stack[-1]]:
-                stack.append(g[stack[-1]].popleft())
-            res.append(stack.pop())
-        return res[::-1]
+            src = stack[-1]
+            if g[src]:
+                next_city = g[src].pop()
+                stack.append(next_city)
+            else:
+                route.append(stack.pop())
+        return route[::-1]
 
 
-# @lc code=end
+
+        
