@@ -22,4 +22,8 @@ class Solution:
             return -1
         
         l = findMin(nums)
-        return max(bin_s(0, l - 1), bin_s(l, len(nums) - 1))
+        res = bin_s(0, l - 1)
+        if res == -1:
+            return bin_s(l, len(nums) - 1)
+        return res
+        
