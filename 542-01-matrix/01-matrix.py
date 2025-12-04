@@ -17,8 +17,8 @@ class Solution:
             for dr, dc in dirs:
                 nr, nc = dr + r, dc + c
                 if 0 <= nr < rows and 0 <= nc < cols and (nr, nc) not in visit:
-                    visit.add((nr, nc))
                     if mat[nr][nc] == 1:
+                        visit.add((nr, nc))
                         res[nr][nc] = res[r][c] + 1
-                    q.append((nr, nc))
+                        q.append((nr, nc))
         return res
