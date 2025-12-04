@@ -14,7 +14,6 @@ class Solution:
                     if 0 <= ni < rows and 0 <= nj < cols:
                         if grid[ni][nj] == '1' and (ni, nj) not in visited:
                             stack.append((ni, nj))
-                            visited.add((ni, nj))
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == '1' and (i, j) not in visited:
