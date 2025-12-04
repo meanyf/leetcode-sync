@@ -10,7 +10,6 @@ class Solution:
             return True
         stack = []
         current = root
-        res = []
         prev = -math.inf
         while stack or current:
             if current:
@@ -21,6 +20,5 @@ class Solution:
                 if prev >= node.val:
                     return False
                 prev = node.val
-                res.append(node.val)
                 current = node.right
         return True
