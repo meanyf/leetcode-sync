@@ -1,6 +1,6 @@
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
-        if not image or not image[0]: return
+        if not image or not image[0]: return image
         rows, cols = len(image), len(image[0])
         dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         orig = image[sr][sc]
