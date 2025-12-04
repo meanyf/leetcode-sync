@@ -5,7 +5,8 @@ class Solution:
         dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         orig = image[sr][sc]
         stack = [(sr, sc)]
-        visit = set((sr, sc))
+        visit = set()
+        visit.add((sr, sc))
         image[sr][sc] = color
         while stack:
             r, c = stack.pop()
