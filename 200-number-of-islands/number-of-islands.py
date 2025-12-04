@@ -1,5 +1,6 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid or not grid[0]: return 0
         dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         rows, cols = len(grid), len(grid[0])
         visited = set()
@@ -14,6 +15,8 @@ class Solution:
                     if 0 <= ni < rows and 0 <= nj < cols:
                         if grid[ni][nj] == '1' and (ni, nj) not in visited:
                             stack.append((ni, nj))
+                            visited.add((ni, nj))
+
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == '1' and (i, j) not in visited:
