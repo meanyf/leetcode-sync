@@ -17,10 +17,8 @@ class Solution:
                 current = current.left
             else:
                 node = stack.pop()
-                if node:
-                    res.append(node.val)
-                    current = node.right
-        if len(res) == 1: return True
+                res.append(node.val)
+                current = node.right
         for i in range(1, len(res)):
             if res[i - 1] >= res[i]:
                 return False
