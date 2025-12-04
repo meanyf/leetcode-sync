@@ -6,13 +6,12 @@ class Solution:
         rows, cols = len(mat), len(mat[0])
         res = [[0] * cols for _ in range(rows)]
         q = deque()
-        sr = sc = None
+        visit = set()
         for r in range(rows):
             for c in range(cols):
                 if mat[r][c] == 0:
                     q.append((r, c))
-        visit = set()
-        visit.add((sr, sc))
+                    visit.add((r, c))
         while q:
             r, c = q.popleft()
             for dr, dc in dirs:
