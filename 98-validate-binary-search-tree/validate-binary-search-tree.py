@@ -11,15 +11,16 @@ class Solution:
         stack = []
         current = root
         res = []
+        prev = -math.inf
         while stack or current:
             if current:
                 stack.append(current)
                 current = current.left
             else:
                 node = stack.pop()
+                if prev >= node.val:
+                    return False
+                prev = node.val
                 res.append(node.val)
                 current = node.right
-        for i in range(1, len(res)):
-            if res[i - 1] >= res[i]:
-                return False
         return True
