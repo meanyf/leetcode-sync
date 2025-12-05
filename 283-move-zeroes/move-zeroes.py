@@ -1,26 +1,18 @@
-#
-# @lc app=leetcode id=283 lang=python3
-#
-# [283] Move Zeroes
-#
-
-# @lc code=start
 class Solution:
-    def moveZeroes(self, nums: list[int]) -> None:
+    def moveZeroes(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """
         l = 0
-        r = 1
-        while l < len(nums) and r < len(nums):
-            if nums[l] == 0:
-                r = max(r, l + 1)
-                while r < len(nums) and nums[r] == 0:
-                    r += 1
-                if r < len(nums):
-                    nums[l], nums[r] = nums[r], nums[l]
-            else:
+        cnt = 0
+        for r, item in enumerate(nums):
+            while l < len(nums) and nums[l] == 0:
+                cnt += 1
                 l += 1
-    
-# @lc code=end
-
+            if l < len(nums):
+               nums[r] = nums[l]
+               l += 1
+        
+        for i in range(1, cnt + 1):
+            nums[-i] = 0
+        
