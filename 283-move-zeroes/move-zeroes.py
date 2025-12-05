@@ -5,7 +5,7 @@ class Solution:
         """
         l = 0
         cnt = 0
-        for r, item in enumerate(nums):
+        for r in range(len(nums)):
             while l < len(nums) and nums[l] == 0:
                 cnt += 1
                 l += 1
