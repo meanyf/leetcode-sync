@@ -12,11 +12,10 @@ class RandomizedSet:
         return True
 
     def remove(self, val: int) -> bool:
-        if val not in self.d:
-            return False
+        if val not in self.d: return False
         i = self.d[val]
         prev_last_val = self.lst[-1]
-        self.lst[i], self.lst[-1] = self.lst[-1], self.lst[i]
+        self.lst[i] = prev_last_val
         self.d[prev_last_val] = i
         self.lst.pop()
         del self.d[val]
