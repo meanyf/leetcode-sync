@@ -10,15 +10,9 @@ class Solution:
         if l == len(arr): 
             l = len(arr) - 1
         res = abs(arr[l] - x)
-        ans = l
         if l > 0 and res >= abs(arr[l - 1] - x):
-            ans = l - 1
-            res = abs(arr[l - 1] - x)
-        if l < len(arr) - 1 and res > abs(arr[l + 1] - x):
-            ans = l + 1
-        l = ans
+            l -= 1
         r = l + 1
-        print(l, r)
         cnt = 0
         while cnt < k:
             if r >= len(arr):
