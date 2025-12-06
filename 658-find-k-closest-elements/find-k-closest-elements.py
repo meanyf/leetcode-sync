@@ -12,8 +12,7 @@ class Solution:
                 r = m - 1
         if l == len(arr): 
             l = len(arr) - 1
-        res = abs(arr[l] - x)
-        if l > 0 and res >= abs(arr[l - 1] - x):
+        if l > 0 and abs(arr[l - 1] - x) <= abs(arr[l] - x):
             l -= 1
         r = l + 1
         cnt = 0
