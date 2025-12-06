@@ -3,6 +3,9 @@ class Solution:
         l, r = 0, len(arr) - 1
         while l <= r:
             m = (l + r) // 2
+            if arr[m] == x:
+                l = m
+                break
             if arr[m] < x:
                 l = m + 1
             else:
