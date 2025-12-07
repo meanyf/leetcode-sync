@@ -3,7 +3,8 @@ class Solution:
         nums.sort()
         s = set()
         res = []
-        for i in range(len(nums)):
+        i = 0
+        while i < len(nums):
             l, r = i + 1, len(nums) - 1
             while l < r:
                 if nums[i] + nums[l] + nums[r] < 0:
@@ -11,13 +12,15 @@ class Solution:
                 elif nums[i] + nums[l] + nums[r] > 0:
                     r -= 1
                 else:
-                    if (nums[i], nums[l], nums[r]) not in s:
-                        res.append([nums[i], nums[l], nums[r]])
-                        s.add((nums[i], nums[l], nums[r]))
+                    res.append([nums[i], nums[l], nums[r]])
+                    s.add((nums[i], nums[l], nums[r]))
                     l += 1
                     r -= 1
                     while l < r and nums[l - 1] == nums[l]:
                         l += 1
                     while l < r and nums[r + 1] == nums[r]:
                         r -= 1
+            i += 1
+            while i < len(nums) and nums[i] == nums[i-1]:
+                i += 1
         return res
