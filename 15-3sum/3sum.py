@@ -16,4 +16,8 @@ class Solution:
                         s.add((nums[i], nums[l], nums[r]))
                     l += 1
                     r -= 1
+                    while l < r and nums[l - 1] == nums[l]:
+                        l += 1
+                    while l < r and nums[r + 1] == nums[r]:
+                        r -= 1
         return res
