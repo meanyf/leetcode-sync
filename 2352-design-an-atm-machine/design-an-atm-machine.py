@@ -5,8 +5,8 @@ class ATM:
         self.counts = [0] * 5
 
     def deposit(self, banknotesCount: List[int]) -> None:
-        for i in range(len(banknotesCount) - 1, -1, -1):
-            self.counts[len(self.counts) - 1 - i] += banknotesCount[i]
+        for i in range(len(banknotesCount)):
+            self.counts[i] += banknotesCount[len(banknotesCount) - 1 - i]
 
     def withdraw(self, amount: int) -> List[int]:
         res = [0] * 5
