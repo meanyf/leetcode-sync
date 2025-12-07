@@ -11,11 +11,9 @@ class ATM:
         res = []
         original = self.d.copy()
         for item in self.banknotes:
-            total = 0
-            if self.d[item] > 0:
-                total = min(amount // item, self.d[item])
-                amount -= total * item
-                self.d[item] -= total
+            total = min(amount // item, self.d[item])
+            amount -= total * item
+            self.d[item] -= total
             res.append(total)
         if amount == 0:
             return res[::-1]
