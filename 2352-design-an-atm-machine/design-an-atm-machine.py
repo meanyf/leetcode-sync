@@ -5,8 +5,9 @@ class ATM:
         self.banknotes = [500, 200, 100, 50, 20]
 
     def deposit(self, banknotesCount: List[int]) -> None:
-        for i, item in enumerate(banknotesCount[::-1]):
-            self.d[self.banknotes[i]] = self.d.get(self.banknotes[i], 0) + item
+        for cnt, banknote in zip(banknotesCount[::-1], self.banknotes):
+            self.d[banknote] = self.d[banknote] + cnt
+
     def withdraw(self, amount: int) -> List[int]:
         res = []
         original = self.d.copy()
