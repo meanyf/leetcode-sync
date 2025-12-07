@@ -9,11 +9,11 @@ class ATM:
             self.counts[i] += cnt
 
     def withdraw(self, amount: int) -> List[int]:
-        res = []
-        for i, banknote in enumerate(self.banknotes):
-            total = min(amount // banknote, self.counts[i])
-            amount -= total * banknote
-            res.append(total)
+        res = [0] * 5
+        for i in range(len(self.banknotes)):
+            total = min(amount // self.banknotes[i], self.counts[i])
+            amount -= total * self.banknotes[i]
+            res[i] = total
         if amount == 0:
             for i in range(len(res)):
                 self.counts[i] -= res[i]
