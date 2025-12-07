@@ -5,8 +5,8 @@ class ATM:
         self.counts = [0] * 5
 
     def deposit(self, banknotesCount: List[int]) -> None:
-        for i, cnt in enumerate(banknotesCount[::-1]):
-            self.counts[i] += cnt
+        for i in range(len(banknotesCount) - 1, -1, -1):
+            self.counts[len(self.counts) - 1 - i] += banknotesCount[i]
 
     def withdraw(self, amount: int) -> List[int]:
         res = [0] * 5
@@ -14,12 +14,11 @@ class ATM:
             total = min(amount // self.banknotes[i], self.counts[i])
             amount -= total * self.banknotes[i]
             res[i] = total
-        if amount == 0:
-            for i in range(len(res)):
-                self.counts[i] -= res[i]
-            return res[::-1]
-        else:
+        if amount != 0:
             return [-1]
+        for i in range(len(res)):
+            self.counts[i] -= res[i]
+        return res[::-1]
 
 # Your ATM object will be instantiated and called as such:
 # obj = ATM()
