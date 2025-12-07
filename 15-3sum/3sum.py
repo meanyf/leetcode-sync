@@ -3,7 +3,9 @@ class Solution:
         nums.sort()
         res = []
         i = 0
-        while i < len(nums):
+        for i in range(len(nums)):
+            if i > 0 and nums[i - 1] == nums[i]:
+                continue
             l, r = i + 1, len(nums) - 1
             while l < r:
                 if nums[i] + nums[l] + nums[r] < 0:
@@ -18,7 +20,4 @@ class Solution:
                         l += 1
                     while l < r and nums[r + 1] == nums[r]:
                         r -= 1
-            i += 1
-            while i < len(nums) and nums[i] == nums[i-1]:
-                i += 1
         return res
