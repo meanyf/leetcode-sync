@@ -1,7 +1,6 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
-        s = set()
         res = []
         i = 0
         while i < len(nums):
@@ -13,7 +12,6 @@ class Solution:
                     r -= 1
                 else:
                     res.append([nums[i], nums[l], nums[r]])
-                    s.add((nums[i], nums[l], nums[r]))
                     l += 1
                     r -= 1
                     while l < r and nums[l - 1] == nums[l]:
