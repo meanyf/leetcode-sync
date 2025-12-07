@@ -1,45 +1,29 @@
-#
-# @lc app=leetcode id=2241 lang=python3
-#
-# [2241] Design an ATM Machine
-#
-
-# @lc code=start
-from collections import defaultdict
 class ATM:
 
     def __init__(self):
-        self.d = defaultdict(int)
-        self.back = defaultdict(int)
-        self.values = [500, 200, 100, 50, 20]
+        self.d = {500: 0, 200: 0, 100: 0, 50: 0, 20: 0}
+        self.banknotes = [500, 200, 100, 50, 20]
+
     def deposit(self, banknotesCount: List[int]) -> None:
-        self.d[20] += banknotesCount[0]
-        self.d[50] += banknotesCount[1]
-        self.d[100] += banknotesCount[2]
-        self.d[200] += banknotesCount[3]
-        self.d[500] += banknotesCount[4]
-
+        for i, item in enumerate(banknotesCount[::-1]):
+            self.d[self.banknotes[i]] = self.d.get(self.banknotes[i], 0) + item
     def withdraw(self, amount: int) -> List[int]:
-        res = [0] * 5
-        for i in range(len(self.values)):
-            current_banknote = self.values[i]
-            if current_banknote <= amount and self.d[current_banknote] > 0:
-                target = min(amount // current_banknote, self.d[current_banknote])
-                self.back[current_banknote] += target
-                res[4 - i] += target
-                amount -= current_banknote * target
-                self.d[current_banknote] -= target
+        res = []
+        original = self.d.copy()
+        for item in self.banknotes:
+            total = 0
+            if self.d[item] > 0:
+                total = min(amount // item, self.d[item])
+                amount -= total * item
+                self.d[item] -= total
+            res.append(total)
         if amount == 0:
-            self.back.clear()
-            return res
-        for key in self.back:
-            self.d[key] += self.back[key]
-            self.back[key] = 0 
-        return [-1]
-
+            return res[::-1]
+        else:
+            self.d = original
+            return [-1]
 
 # Your ATM object will be instantiated and called as such:
 # obj = ATM()
 # obj.deposit(banknotesCount)
 # param_2 = obj.withdraw(amount)
-# @lc code=end
