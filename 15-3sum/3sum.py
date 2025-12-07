@@ -8,9 +8,10 @@ class Solution:
                 continue
             l, r = i + 1, len(nums) - 1
             while l < r:
-                if nums[i] + nums[l] + nums[r] < 0:
+                total = nums[i] + nums[l] + nums[r]
+                if total < 0:
                     l += 1
-                elif nums[i] + nums[l] + nums[r] > 0:
+                elif total > 0:
                     r -= 1
                 else:
                     res.append([nums[i], nums[l], nums[r]])
