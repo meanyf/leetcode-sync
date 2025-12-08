@@ -1,29 +1,19 @@
-# @lc app=leetcode id=16 lang=python3
-#
-# [16] 3Sum
-#
-
-# @lc code=start
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
-        res = float('inf')
-        mn = float('inf')
-        for idx in range(len(nums) - 2):
-            if idx > 0 and nums[idx] == nums[idx-1]:
+        res = 10**6
+        for i in range  (len(nums) - 2):
+            if i > 0 and nums[i - 1] == nums[i]:
                 continue
-            l = idx + 1
-            r = len(nums) - 1
+            l, r = i + 1, len(nums) - 1
             while l < r:
-                val = nums[idx] + nums[l] + nums[r]
-                if abs(target - val) < mn:
-                    mn = abs(target - val)
-                    res = val
-                    if target == val: return target
-                elif val < target:
-                    prev = nums[l]
+                total = nums[i] + nums[l] + nums[r]
+                if total - target < 0:
                     l += 1
-                else:
+                elif total - target > 0:
                     r -= 1
+                else:
+                    return target
+                if abs(target - total) < abs(target - res):
+                    res = total
         return res
-# @lc code=end
