@@ -16,8 +16,7 @@ class Solution:
                     r -= 1
                 else:
                     res.append([nums[i], nums[l], nums[r]])
-                    left_val = nums[l]
-                    right_val = nums[r]
+                    left_val, right_val = nums[l], nums[r]
                     while l < r and left_val == nums[l]:
                         l += 1
                     while l < r and right_val == nums[r]:
