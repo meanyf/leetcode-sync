@@ -9,11 +9,17 @@ class Solution:
             while l < r:
                 total = nums[i] + nums[l] + nums[r]
                 if total < target:
-                    l += 1
+                    left_val = nums[l]
+                    while l < r and left_val == nums[l]:
+                        l += 1
                 elif total > target:
-                    r -= 1
+                    right_val = nums[r]
+                    while l < r and right_val == nums[r]:
+                        r -= 1
                 else:
                     return target
                 if abs(target - total) < abs(target - res):
                     res = total
+                
+   
         return res
