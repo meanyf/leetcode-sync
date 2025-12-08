@@ -8,10 +8,9 @@ class Solution:
             l, r = i + 1, len(nums) - 1
             while l < r:
                 total = nums[i] + nums[l] + nums[r]
-                dif = total - target
-                if dif < 0:
+                if total < target:
                     l += 1
-                elif dif > 0:
+                elif total > target:
                     r -= 1
                 else:
                     return target
