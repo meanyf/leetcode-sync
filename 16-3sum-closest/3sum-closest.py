@@ -20,6 +20,4 @@ class Solution:
                     return target
                 if abs(target - total) < abs(target - res):
                     res = total
-                
-   
         return res
