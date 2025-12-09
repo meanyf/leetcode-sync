@@ -3,6 +3,8 @@ class Solution:
         nums.sort()
         res = math.inf
         for i in range(len(nums) - 2):
+            if i > 0 and nums[i - 1] == nums[i]:
+                continue
             l, r = i + 1, len(nums) - 1
             while l < r:
                 total = nums[i] + nums[l] + nums[r]
