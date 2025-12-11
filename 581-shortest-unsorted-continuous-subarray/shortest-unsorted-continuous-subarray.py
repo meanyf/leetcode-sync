@@ -4,7 +4,7 @@ class Solution:
             return 0
         l, r = math.inf, -math.inf
         left_val, right_val = math.inf, -math.inf
-        for i in range(len(nums) -1, 0, -1):
+        for i in range(1, len(nums)):
             if nums[i - 1] > nums[i]:
                 left_val = min(left_val, nums[i])
                 right_val = max(right_val, nums[i - 1])
