@@ -4,46 +4,32 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
 class Solution:
-    def isSubtree(self, root: 'TreeNode', subRoot: 'TreeNode') -> bool:
-        if not subRoot:
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        def check(root, subRoot):
+            stack = [(root, subRoot)]
+            while stack:
+                first_node, snd_node = stack.pop()
+                if first_node is not None and snd_node is None:
+                    return False
+                if first_node is None and snd_node is not None:
+                    return False
+                if first_node is not None and snd_node is not None:
+                    if first_node.val != snd_node.val:
+                        return False
+                    stack.append((first_node.right, snd_node.right))
+                    stack.append((first_node.left, snd_node.left))
             return True
-        if not root:
-            return False
-        
-        def isSameTree(p: 'TreeNode', q: 'TreeNode') -> bool:
-            stack_p = [p]
-            stack_q = [q]
-            
-            while stack_p and stack_q:
-                node_p = stack_p.pop()
-                node_q = stack_q.pop()
-                
-                if not node_p and not node_q:
-                    continue
-                if not node_p or not node_q:
-                    return False
-                if node_p.val != node_q.val:
-                    return False
-                
-                stack_p.append(node_p.right)
-                stack_p.append(node_p.left)
-                stack_q.append(node_q.right)
-                stack_q.append(node_q.left)
-            
-            return not stack_p and not stack_q
-        
+
+        if not root and not subRoot:
+            return True
         stack = [root]
-        
         while stack:
             node = stack.pop()
-            if node.val == subRoot.val:
-                if isSameTree(node, subRoot):
-                    return True
-            if node.right:
+            if node:
                 stack.append(node.right)
-            if node.left:
                 stack.append(node.left)
-        
+                if node.val == subRoot.val:
+                    if check(node, subRoot):
+                        return True
         return False
