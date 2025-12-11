@@ -12,13 +12,13 @@ class Solution:
         if left_val is not None:
             for i in range(len(nums)):
                 if left_val < nums[i]:
-                    l = min(l, i)
+                    l = i
                     break
         
         if right_val is not None:
             for i in range(len(nums) - 1, -1, -1):
                 if right_val > nums[i]:
-                    r = max(r, i)
+                    r = i
                     break
 
         print(l, r)
