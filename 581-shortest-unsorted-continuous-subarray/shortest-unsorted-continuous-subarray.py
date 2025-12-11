@@ -1,28 +1,29 @@
-#
-# @lc app=leetcode id=581 lang=python3
-#
-# [581] Shortest Unsorted Continuous Subarray
-#
-
-# @lc code=start
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
-        if not nums:
+        if len(nums) == 1:
             return 0
-        mn = nums[0]
-        l = r = 0
-        for i, num in enumerate(nums[:-1]):
-            mn = max(mn, num)
-            if mn > nums[i + 1]:
-                l = i + 1
-        mx = nums[-1]
-        for i in range(len(nums) - 1, 0, -1):
-            mx = min(mx, nums[i])
-            if mx < nums[i - 1]:
-                # print(mx, nums[i - 1])
-                r = i - 1
-        if l - r + 1 == 1:
-            return 0
-        return l - r + 1
-# @lc code=end
+        l, r = math.inf, -math.inf
+        left_val, right_val = math.inf, -math.inf
+        for i in range(len(nums) -1, 0, -1):
+            if nums[i - 1] > nums[i]:
+                left_val = min(left_val, nums[i])
+                right_val = max(right_val, nums[i - 1])
 
+        if left_val is not None:
+            for i in range(len(nums)):
+                if left_val < nums[i]:
+                    l = min(l, i)
+                    break
+        
+        if right_val is not None:
+            for i in range(len(nums) - 1, -1, -1):
+                if right_val > nums[i]:
+                    r = max(r, i)
+                    break
+
+        print(l, r)
+        if left_val == math.inf and right_val == -math.inf:
+            return 0
+
+        res = r - l + 1
+        return res if res != 1 else 0
