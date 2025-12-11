@@ -6,19 +6,19 @@
 #         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        def check(root, subRoot):
-            stack = [(root, subRoot)]
+        def check(a, b):
+            stack = [(a, b)]
             while stack:
-                first_node, snd_node = stack.pop()
-                if first_node is not None and snd_node is None:
+                x, y = stack.pop()
+                if x is None and y is None:
+                    continue
+                if x is None or y is None:
                     return False
-                if first_node is None and snd_node is not None:
-                    return False
-                if first_node is not None and snd_node is not None:
-                    if first_node.val != snd_node.val:
+                if x is not None and y is not None:
+                    if x.val != y.val:
                         return False
-                    stack.append((first_node.right, snd_node.right))
-                    stack.append((first_node.left, snd_node.left))
+                    stack.append((x.right, y.right))
+                    stack.append((x.left, y.left))
             return True
 
         if not root and not subRoot:
