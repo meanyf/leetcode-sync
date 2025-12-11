@@ -18,8 +18,12 @@ class Solution:
                 stack.append((x.left, y.left))
             return True
 
-        if not root and not subRoot:
+        if not subRoot:
             return True
+        
+        if not root:
+            return False
+            
         stack = [root]
         while stack:
             node = stack.pop()
