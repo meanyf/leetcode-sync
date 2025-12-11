@@ -17,4 +17,4 @@ class Solution:
                 r = i
                 break
 
-        return r- l + 1
+        return r - l + 1
