@@ -1,7 +1,5 @@
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
-        if len(nums) == 1:
-            return 0
         l, r = 0, -1
         left_val, right_val = math.inf, -math.inf
         for i in range(1, len(nums)):
