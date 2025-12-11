@@ -10,15 +10,12 @@ class Solution:
             stack = [(a, b)]
             while stack:
                 x, y = stack.pop()
-                if x is None and y is None:
+                if not x and not y:
                     continue
-                if x is None or y is None:
+                if not x or not y or x.val != y.val:
                     return False
-                if x is not None and y is not None:
-                    if x.val != y.val:
-                        return False
-                    stack.append((x.right, y.right))
-                    stack.append((x.left, y.left))
+                stack.append((x.right, y.right))
+                stack.append((x.left, y.left))
             return True
 
         if not root and not subRoot:
