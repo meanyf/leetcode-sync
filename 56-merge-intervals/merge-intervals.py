@@ -2,9 +2,8 @@ class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort()
         res = []
-        l, r = intervals[0][0], intervals[0][1]
-        for i in range(1, len(intervals)):
-            start, end = intervals[i][0], intervals[i][1]
+        l, r = intervals[0]
+        for start, end in intervals:
             if start > r:
                 res.append([l, r])
                 l, r = start, end
