@@ -18,7 +18,7 @@ class Solution:
                 if visited:
                     left_ser = d.get(node.left, None)
                     right_ser = d.get(node.right, None)
-                    val = (left_ser, node.val, right_ser)
+                    val = (node.val, right_ser, left_ser)
                     d[node] = val
                     cnt[val] = cnt.get(val, 0) + 1
                     if cnt[val] == 2:
