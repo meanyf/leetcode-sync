@@ -4,7 +4,7 @@ class Solution:
         i = 0
         res = []
         l, r = intervals[0][0], intervals[0][1]
-        while i < len(intervals):
+        for i in range(len(intervals)):
             prev_l, prev_r = l, r
             l = max(l, intervals[i][0])
             r = min(r, intervals[i][1])
@@ -14,6 +14,5 @@ class Solution:
             else:
                 l = min(prev_l, intervals[i][0])
                 r = max(prev_r, intervals[i][1])
-            i += 1
         res.append([l, r])
         return res
