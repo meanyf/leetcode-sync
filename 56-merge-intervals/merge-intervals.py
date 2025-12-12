@@ -3,7 +3,8 @@ class Solution:
         intervals.sort()
         res = []
         l, r = intervals[0]
-        for start, end in intervals:
+        for i in range(1, len(intervals)):
+            start, end = intervals[i]
             if start > r:
                 res.append([l, r])
                 l, r = start, end
