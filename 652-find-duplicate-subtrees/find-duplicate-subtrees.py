@@ -16,8 +16,8 @@ class Solution:
             node, visited = stack.pop()
             if node:
                 if visited:
-                    left_ser = d.get(node.left, 'None')
-                    right_ser = d.get(node.right, 'None')
+                    left_ser = d.get(node.left, None)
+                    right_ser = d.get(node.right, None)
                     val = (left_ser, node.val, right_ser)
                     d[node] = val
                     d2[val] = d2.get(val, 0) + 1
