@@ -7,7 +7,7 @@
 class Solution:
     def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
         d = {}
-        d2 = {}
+        cnt = {}
         if not root:
             return []
         stack = [(root, False)]
@@ -20,8 +20,8 @@ class Solution:
                     right_ser = d.get(node.right, None)
                     val = (left_ser, node.val, right_ser)
                     d[node] = val
-                    d2[val] = d2.get(val, 0) + 1
-                    if d2[val] == 2:
+                    cnt[val] = cnt.get(val, 0) + 1
+                    if cnt[val] == 2:
                         res.append(node)
                 else:
                     stack.append((node, True))
