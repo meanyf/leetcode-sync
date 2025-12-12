@@ -5,14 +5,12 @@ class Solution:
         res = []
         l, r = intervals[0][0], intervals[0][1]
         for i in range(len(intervals)):
-            prev_l, prev_r = l, r
-            l = max(l, intervals[i][0])
-            r = min(r, intervals[i][1])
-            if l > r:
-                res.append([prev_l, prev_r])
-                l, r = intervals[i][0], intervals[i][1]
+            start, end = intervals[i][0], intervals[i][1]
+            if start > r:
+                res.append([l, r])
+                l, r = start, end
             else:
-                l = min(prev_l, intervals[i][0])
-                r = max(prev_r, intervals[i][1])
+                l = min(l, start)
+                r = max(r, end)
         res.append([l, r])
         return res
