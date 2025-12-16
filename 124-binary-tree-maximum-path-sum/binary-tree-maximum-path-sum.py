@@ -9,19 +9,18 @@ class Solution:
         if not root:
             return 0
         stack = [(root, False)]
-        d = dict()
-        mx = -float('inf')
-
+        res = -math.inf
+        d = {}
         while stack:
             node, visited = stack.pop()
-            if not node: continue
-            if visited:
-                right = d.get(node.right, 0)
-                left = d.get(node.left, 0)
-                d[node] = max(node.val, node.val + right, node.val + left)
-                mx = max(mx, d[node], node.val + right + left)
-            else:
-                stack.append((node, True))
-                stack.append((node.right, False))
-                stack.append((node.left, False))
-        return mx
+            if node:
+                if visited:
+                    left = d.get(node.left, 0)
+                    right = d.get(node.right, 0)
+                    d[node] = max(node.val, node.val + left, node.val + right)
+                    res = max(d[node], res, node.val + left + right)
+                else:
+                    stack.append((node, True))
+                    stack.append((node.right, False))
+                    stack.append((node.left, False))
+        return res
