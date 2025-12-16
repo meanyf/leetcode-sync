@@ -18,9 +18,9 @@ class Solution:
                     left = d.get(node.left, 0)
                     right = d.get(node.right, 0)
                     d[node] = 1 + max(left, right)
-                    res = max(left + right, res)
+                    res = max(left + right + 1, res)
                 else:
                     stack.append((node, True))
                     stack.append((node.right, False))
                     stack.append((node.left, False))
-        return res
+        return res - 1
