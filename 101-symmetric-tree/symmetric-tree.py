@@ -11,13 +11,12 @@ class Solution:
         stack = [(root.left, root.right)]
         while stack:
             left, right = stack.pop()
-            if left is None and right is not None:
+            if left is None and right is None:
+                continue
+            if left is None or right is None:
                 return False
-            if left is not None and right is None:
+            if left.val != right.val:
                 return False
-            if left and right:
-                if left.val != right.val:
-                    return False
-                stack.append((left.right, right.left))
-                stack.append((left.left, right.right))
+            stack.append((left.right, right.left))
+            stack.append((left.left, right.right))
         return True
