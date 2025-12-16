@@ -9,7 +9,7 @@ class Solution:
         if not root:
             return 0
         stack = [(root, False)]
-        res = -math.inf
+        res = 0
         d = {}
         while stack:
             node, visited = stack.pop()
@@ -18,9 +18,9 @@ class Solution:
                     left = d.get(node.left, 0)
                     right = d.get(node.right, 0)
                     d[node] = 1 + max(left, right)
-                    res = max(left + right + 1, res)
+                    res = max(left + right, res)
                 else:
                     stack.append((node, True))
                     stack.append((node.right, False))
                     stack.append((node.left, False))
-        return res - 1
+        return res
