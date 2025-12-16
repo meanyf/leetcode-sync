@@ -25,5 +25,4 @@ class Solution:
                 
                 stack_right.append(right.left)
                 stack_right.append(right.right)
-        if stack_left or stack_right: return False
         return True
