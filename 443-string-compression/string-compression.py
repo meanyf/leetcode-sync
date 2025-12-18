@@ -10,7 +10,6 @@ class Solution:
             chars[l] = cur
             l += 1
             if cnt != 1:
-                size = len(str(cnt))
                 for ch in str(cnt):
                     chars[l] = ch
                     l += 1
