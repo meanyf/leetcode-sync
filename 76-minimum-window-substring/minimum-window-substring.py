@@ -5,11 +5,9 @@ class Solution:
         window = defaultdict(int)
         for item in t:
             d[item] += 1
-        cnt = 0
-        l = 0
+        cnt = l = 0
         res = math.inf
-        best_r = -1
-        best_l = 0
+        best_l, best_r = 0, -1
         size = len(d)
         for r, ch in enumerate(s):
             window[ch] += 1
