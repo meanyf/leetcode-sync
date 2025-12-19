@@ -1,3 +1,4 @@
+import math
 from collections import defaultdict
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
@@ -17,9 +18,8 @@ class Solution:
                 if r - l + 1 < res:
                     best_l, best_r = l, r
                     res = r - l + 1
-                if s[l] in d:
-                    if window[s[l]] == d[s[l]]:
-                        cnt -= 1
+                if s[l] in d and window[s[l]] == d[s[l]]:
+                    cnt -= 1
                 window[s[l]] -= 1
                 l += 1
         return s[best_l: best_r + 1]
