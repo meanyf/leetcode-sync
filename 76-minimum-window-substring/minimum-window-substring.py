@@ -1,37 +1,29 @@
-#
-# @lc app=leetcode id=76 lang=python3
-#
-# [76] Minimum Window Substring
-#
-
-# @lc code=start
-
 from collections import defaultdict
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        d = {}
-        for item in t:
-            d[item] = d.get(item, 0) + 1
+        d = defaultdict(int)
         window = defaultdict(int)
-        ans = (float("inf"), 0, 0)
+        for item in t:
+            d[item] += 1
+        cnt = 0
         l = 0
-        formed = 0
+        res = math.inf
+        best_r = -1
+        best_l = 0
+        size = len(d)
         for r, ch in enumerate(s):
-            if ch in d:
-                window[ch] += 1
-                if window[ch] == d[ch]:
-                    formed += 1
-
-            while l < len(s) and formed == len(d):
-                if r - l + 1 < ans[0]:
-                    ans = (r - l + 1, l, r)
-                if s[l] in d and window[s[l]] == d[s[l]]:
-                    formed -= 1
-                if s[l] in window:
-                    window[s[l]] -= 1
+            window[ch] += 1
+            if ch in d and window[ch] == d[ch]:
+                cnt += 1
+            while l < len(s) and cnt == size:
+                if r - l + 1 < res:
+                    best_l = l
+                    best_r = r
+                    res = r - l + 1
+                if s[l] in d:
+                    if window[s[l]] == d[s[l]]:
+                        cnt -= 1
+                window[s[l]] -= 1
                 l += 1
-
-        return "" if ans[0] == float("inf") else s[ans[1] : ans[2] + 1]
-
-
-# @lc code=end
+        return s[best_l: best_r + 1]
+            
