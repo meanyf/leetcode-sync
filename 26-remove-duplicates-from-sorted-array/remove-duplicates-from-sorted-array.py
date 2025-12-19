@@ -1,21 +1,11 @@
-#
-# @lc app=leetcode id=26 lang=python3
-#
-# [26] Remove Duplicates from Sorted Array
-#
-
-# @lc code=start
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        if not nums:
-            return 0
-        prev = nums[0]
-        insert = 1
-        for i in range(1, len(nums)):
-            if prev != nums[i]:
-                nums[insert] = nums[i]
-                insert += 1
-            prev = nums[i]
-        return insert
-# @lc code=end
-
+        l = 0
+        for r in range(len(nums)):
+            while l < len(nums) and nums[l] == nums[r]:
+                l += 1
+            if l < len(nums) and r + 1 < len(nums):
+                nums[r + 1] = nums[l]
+            if l >= len(nums):
+                break
+        return r + 1
