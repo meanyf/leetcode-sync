@@ -9,6 +9,5 @@ class Solution:
                 nums[l] = nums[r]
                 l += 1
 
-        while l < len(nums):
+        for l in range(l, len(nums)):
             nums[l] = 0
-            l += 1
