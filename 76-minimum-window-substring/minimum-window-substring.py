@@ -15,8 +15,7 @@ class Solution:
                 cnt += 1
             while l < len(s) and cnt == size:
                 if r - l + 1 < res:
-                    best_l = l
-                    best_r = r
+                    best_l, best_r = l, r
                     res = r - l + 1
                 if s[l] in d:
                     if window[s[l]] == d[s[l]]:
