@@ -19,7 +19,7 @@ class MyQueue:
         return self.stack2[-1]
 
     def empty(self) -> bool:
-        return True if not self.stack1 and not self.stack2 else False
+        return not self.stack1 and not self.stack2
 
 
 # Your MyQueue object will be instantiated and called as such:
