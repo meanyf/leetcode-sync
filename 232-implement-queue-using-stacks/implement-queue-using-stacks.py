@@ -9,11 +9,9 @@ class MyQueue:
 
     def pop(self) -> int:
         if not self.stack2:
-            ans = self.stack1[0]
-            for i in range(1, len(self.stack1)):
-                self.stack2.append(self.stack1[-i])
-            self.stack1.clear()
-            return ans
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+            return self.stack2.pop()
         else:
             return self.stack2.pop()
 
