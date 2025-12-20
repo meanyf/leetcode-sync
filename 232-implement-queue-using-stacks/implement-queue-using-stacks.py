@@ -11,9 +11,7 @@ class MyQueue:
         if not self.stack2:
             while self.stack1:
                 self.stack2.append(self.stack1.pop())
-            return self.stack2.pop()
-        else:
-            return self.stack2.pop()
+        return self.stack2.pop()
 
     def peek(self) -> int:
         return self.stack2[-1] if self.stack2 else self.stack1[0] 
