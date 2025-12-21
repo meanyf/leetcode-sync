@@ -1,15 +1,14 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        res = []
         d = {}
-        vals = set()
-        for ch1, ch2 in zip(s, t):
-            if ch1 in d:
-                if d[ch1] != ch2:
+        st = set()
+        for a, b in zip(s, t):
+            if a in d:
+                if d[a] != b:
                     return False
             else:
-                if ch2 in vals:
+                if b in st:
                     return False
-                d[ch1] = ch2
-                vals.add(ch2)
+                d[a] = b
+            st.add(b)
         return True
