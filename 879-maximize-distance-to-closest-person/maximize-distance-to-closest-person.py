@@ -1,11 +1,9 @@
 class Solution:
     def maxDistToClosest(self, seats: List[int]) -> int:
-        res = 0
-        for r in range(len(seats)):
-            res = r
-            if seats[r] == 1:
-                break
-        l = r
+        l = 0
+        while l < len(seats) and seats[l] == 0:
+            l += 1
+        res = r = l
         while r < len(seats):
             res = max((r - l) // 2, res)
             l = r
