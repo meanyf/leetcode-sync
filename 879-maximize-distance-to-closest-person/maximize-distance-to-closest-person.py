@@ -8,5 +8,5 @@ class Solution:
             if seats[r] == 1:
                 res = max(res, (r - l) // 2)
                 l = r
-        res = max(res, abs(len(seats) - 1 - l))
+        res = max(res, len(seats) - 1 - l)
         return res
