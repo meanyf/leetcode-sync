@@ -1,27 +1,29 @@
-#
-# @lc app=leetcode id=849 lang=python3
-#
-# [849] Maximize Distance to Closest Person
-#
-
-# @lc code=start
 class Solution:
     def maxDistToClosest(self, seats: List[int]) -> int:
-        l = r = 0
-        mx = 0
+        l = 0
+        while l < len(seats):
+            if seats[l] == 1:
+                break
+            l += 1
+        res = 0
+        res = max(res, abs(0 - l))
+        r = l + 1
         while r < len(seats):
-            while r < len(seats) and seats[r] == 0:
-                r += 1
-            if r == len(seats):
-                mx = max(mx, r - l - 1)
-            elif l == 0 and seats[0] == 0:
-                mx = max(mx, r - l)
+            if seats[r] == 1:
+                break
+            r += 1
+        
+        if r == len(seats):
+            if abs(0 - l) > abs(len(seats) - 1 - l):
+                return abs(0 - l)
             else:
-                mx = max(mx, (r - l) // 2)
+                return abs(len(seats) - 1 - l)
+        
+        while r < len(seats):
+            res = max((r - l) // 2, res)
             l = r
             r += 1
-        return mx
-        
-
-# @lc code=end
-
+            while r < len(seats) and seats[r] != 1:
+                r += 1
+        res = max(res, abs(len(seats) - 1 - l))
+        return res
