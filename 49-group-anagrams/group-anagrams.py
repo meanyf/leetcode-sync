@@ -4,7 +4,4 @@ class Solution:
         d = defaultdict(list)
         for item in strs:
             d[tuple(sorted(item))].append(item)
-        res = []
-        for val in d.values():
-            res.append(val)
-        return res
+        return list(d.values())
