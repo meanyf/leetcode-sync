@@ -15,12 +15,11 @@ class Solution:
             lst = []
             for _ in range(len(q)):
                 node = q.popleft()
-                if node:
-                    lst.append(node.val)
-                    if node.left:
-                        q.append(node.left)
-                    if node.right:
-                        q.append(node.right)
+                lst.append(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
             if not right:
                 lst.reverse()
             res.append(lst)
