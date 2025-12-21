@@ -4,7 +4,7 @@ class Solution:
         d = defaultdict(list)
         for item in strs:
             key = [0] * 26
-            for i, ch in enumerate(item):
+            for ch in item:
                 key[ord(ch) - ord('a')] += 1
             d[tuple(key)].append(item)
         return list(d.values())
