@@ -17,12 +17,12 @@ class Solution:
                 node = q.popleft()
                 if node:
                     lst.append(node.val)
-                    q.append(node.left)
-                    q.append(node.right)
-            if lst:
-                if right:
-                    res.append(lst)
-                else:
-                    res.append(lst[::-1])
+                    if node.left:
+                        q.append(node.left)
+                    if node.right:
+                        q.append(node.right)
+            if not right:
+                lst.reverse()
+            res.append(lst)
             right = not right
         return res
