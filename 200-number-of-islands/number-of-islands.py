@@ -10,8 +10,8 @@ class Solution:
             stack = [(i, j)]
             while stack:
                 row, col = stack.pop()
-                for di, dj in dirs:
-                    nr, nc = di + row, dj + col
+                for dr, dc in dirs:
+                    nr, nc = dr + row, dc + col
                     if 0 <= nr < len(grid) and 0 <= nc < len(grid[0]):
                         if grid[nr][nc] == '1' and (nr, nc) not in visited:
                             visited.add((nr, nc))
