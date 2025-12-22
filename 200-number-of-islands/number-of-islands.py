@@ -9,9 +9,9 @@ class Solution:
             visited.add((i, j))
             stack = [(i, j)]
             while stack:
-                i, j = stack.pop()
+                x, y = stack.pop()
                 for di, dj in dirs:
-                    ni, nj = di + i, dj + j
+                    ni, nj = di + x, dj + y
                     if 0 <= ni < len(grid) and 0 <= nj < len(grid[0]):
                         if grid[ni][nj] == '1' and (ni, nj) not in visited:
                             visited.add((ni, nj))
