@@ -9,13 +9,13 @@ class Solution:
             visited.add((i, j))
             stack = [(i, j)]
             while stack:
-                x, y = stack.pop()
+                row, col = stack.pop()
                 for di, dj in dirs:
-                    ni, nj = di + x, dj + y
-                    if 0 <= ni < len(grid) and 0 <= nj < len(grid[0]):
-                        if grid[ni][nj] == '1' and (ni, nj) not in visited:
-                            visited.add((ni, nj))
-                            stack.append((ni, nj))
+                    nr, nc = di + row, dj + col
+                    if 0 <= nr < len(grid) and 0 <= nc < len(grid[0]):
+                        if grid[nr][nc] == '1' and (nr, nc) not in visited:
+                            visited.add((nr, nc))
+                            stack.append((nr, nc))
 
         res = 0
         for i in range(len(grid)):
