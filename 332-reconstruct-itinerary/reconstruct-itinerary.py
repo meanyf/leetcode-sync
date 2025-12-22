@@ -2,21 +2,17 @@ from collections import defaultdict
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         g = defaultdict(list)
+        tickets.sort()
         for src, dest in tickets:
             g[src].append(dest)
-        for src in g:
-            g[src].sort(reverse=True)
         stack = ['JFK']
-        route = []
+        res = []
         while stack:
-            src = stack[-1]
-            if g[src]:
-                next_city = g[src].pop()
-                stack.append(next_city)
+            node = stack[-1]
+            if g[node]:
+                next_node = g[node].pop(0)
+                stack.append(next_node)
             else:
-                route.append(stack.pop())
-        return route[::-1]
-
-
-
-        
+                res.append(stack.pop())
+        return res[::-1]
+            
